@@ -18,9 +18,6 @@ class Login extends GenericForm {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
-        this.state = {
-            error: ''
-        }
     }
 
 
@@ -33,8 +30,10 @@ class Login extends GenericForm {
             date: (new Date().getDay() + "/" + new Date().getMonth() + "/" + new Date().getFullYear())
         };
 
-        const request = axios.post("http://192.168.0.1:5000/ticket_controller", ticket);
+        const request = axios.post("http://192.168.0.17:5000/ticket_controller", ticket);
+        console.log(ticket);
         request.then(({ data }) => {
+            console.log(data);
             if (data.message != 404) {
                 let bytes = CryptoJS.AES.decrypt(data.message, values.password);
                 if (bytes.words[0] == 2065855593) {
@@ -47,20 +46,18 @@ class Login extends GenericForm {
                         },
                         refetchQueries: [{ query }]
                     })
-                    .then(Actions.root)
+                    .then(()=>console.log("ALgo"))
                     .catch(res => {
                         const errors = res.graphQLErrors.map(error => error.message);
                         const error = errors[0]
-                        this.setState({ error });
+                        console.log(error)
                     });  
                 } else {
-                    this.setState({ error: "Password o email incorrecto." });
+                    console.log("error")
                 }
             } else {
-                this.setState({ error: "Password o email incorrecto." });
+                console.log("error")
             }
-        }).catch((error)=>{
-            console.log(error);
         });
     };
     render() {
