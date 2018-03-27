@@ -1,4 +1,6 @@
 //Dependencias de react
+import "core-js/es6/symbol";
+import "core-js/fn/symbol/iterator";
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
@@ -13,7 +15,7 @@ import { ApolloProvider } from 'react-apollo';
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'http://localhost:3000/graphql',
+    uri: 'http://192.168.0.1:3000/graphql',
     credentials: 'include'
 });
 
@@ -24,7 +26,7 @@ const client = new ApolloClient({
 });
 
 //Importar componentes
-import Login from './login';
+import Login from './components/login';
 
 //Configuracion del router
 class Demos extends Component {
