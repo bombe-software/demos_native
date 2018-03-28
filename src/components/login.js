@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
 import { Container, Content, Button, Text, Item, Label, Input } from 'native-base';
 import { graphql } from 'react-apollo';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 
 import login from "./../mutations/login";
@@ -18,11 +19,13 @@ class Login extends GenericForm {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.state = {
+            error: ''
+        }
     }
 
 
     async onSubmit(values) {
-        
         const { email, password } = values;
 
         const ticket = {
@@ -31,14 +34,12 @@ class Login extends GenericForm {
         };
 
         const request = axios.post("http://192.168.0.17:5000/ticket_controller", ticket);
-        console.log(ticket);
+
         request.then(({ data }) => {
-            console.log(data);
             if (data.message != 404) {
                 let bytes = CryptoJS.AES.decrypt(data.message, values.password);
                 if (bytes.words[0] == 2065855593) {
                     let decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-                    console.log(email);
                     this.props.mutate({
                         variables: {
                             email,
@@ -46,20 +47,36 @@ class Login extends GenericForm {
                         },
                         refetchQueries: [{ query }]
                     })
-                    .then(()=>console.log("ALgo"))
+                    .then(data => Actions.root())
                     .catch(res => {
                         const errors = res.graphQLErrors.map(error => error.message);
                         const error = errors[0]
-                        console.log(error)
-                    });  
+                        this.setState({ error });
+                    });    
                 } else {
-                    console.log("error")
+                    Alert.alert(
+                        'Error',
+                        'Password o email incorrectos',
+                        [
+                          {text: 'OK', onPress: () => console.log('OK Pressed')}
+                        ],
+                        { cancelable: false }
+                      )
                 }
             } else {
-                console.log("error")
+                Alert.alert(
+                    'Error',
+                    'Password o email incorrectos',
+                    [
+                      {text: 'OK', onPress: () => console.log('OK Pressed')}
+                    ],
+                    { cancelable: false }
+                  )
             }
         });
     };
+
+
     render() {
         return (
             <Container>
@@ -96,7 +113,7 @@ class Login extends GenericForm {
                             </View>
                         )}
                     />
-                    <Label style={{color: 'red', fontSize: 15}}>{this.error}</Label>
+                    <Label style={{color: 'red', fontSize: 15}}>{this.state.error}</Label>
                 </Content>
             </Container>
         );

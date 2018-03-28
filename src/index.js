@@ -26,7 +26,23 @@ const client = new ApolloClient({
 });
 
 //Importar componentes
+
+//Componentes sencillos
+import LandingPage from './components/landing_page';
+import SignUp from './components/signup';
 import Login from './components/login';
+
+//Politicos
+import Politicos from './components/politicos/politicos';
+import PoliticosRegion from './components/politicos/politico_region';
+import PoliticoDetail from "./components/politicos/politico_detail/politico_detail";
+import EventoDetail from "./components/politicos/politico_detail/evento_detail";
+import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
+
+
+//Elecciones
+import Elecciones from './components/elecciones/elecciones';
+import EleccionesGrafica from './components/elecciones/elecciones_grafica';
 
 //Configuracion del router
 class Demos extends Component {
@@ -50,8 +66,14 @@ class Demos extends Component {
                 <Router>
                     <Stack hideNavBar>
                         <Scene key="before" hideNavBar>
-                            <Scene key="inicio" title="Inicio"  hideNavBar>
-                                <Scene key="inicio_1" component={Login} />
+                        <Scene key="landing" title="landing" hideNavBar>
+                                <Scene key="landing_before" component={LandingPage} />
+                            </Scene>
+                            <Scene key="signup" title="Signup" hideNavBar>
+                                <Scene key="signup_before" component={SignUp} />
+                            </Scene>
+                            <Scene key="login" title="Login" hideNavBar>
+                                <Scene key="login_before" component={Login} />
                             </Scene>
                         </Scene>
 
@@ -60,17 +82,22 @@ class Demos extends Component {
                             tabs={true}
                             tabBarPosition={'bottom'}
                             tabBarStyle={{ backgroundColor: '#FFFFFF' }} >
-                            <Scene key="inicio" title="Inicio" iconName="home" icon={this.renderTabIcon}>
-                                <Scene key="inicio_1" component={() => { return (<Text>Inicio</Text>) }} />
+                            <Scene key="inicio_root" title="Inicio" iconName="home" icon={this.renderTabIcon}>
+                                <Scene key="index_inicio_root" component={() => { return (<Text>Inicio</Text>) }} />
                             </Scene>
-                            <Scene key="politicos" title="Politicos" iconName="save" icon={this.renderTabIcon}>
-                                <Scene key="politicos_1" component={() => { return (<Text>Poli</Text>) }} />
+                            <Scene key="politicos_root" title="Politicos" iconName="save" icon={this.renderTabIcon}>
+                                <Scene key="index_politicos_root" component={Politicos} />
+                                <Scene key="region_politicos_root" component={PoliticosRegion} />
+                                <Scene key="detail_politicos_root" component={PoliticoDetail} />
+                                <Scene key="eventoDetail_politicos_root" component={EventoDetail} />
+                                <Scene key="propuestaDetail_politicos_root" component={PropuestaDetail} />
                             </Scene>
-                            <Scene key="elecciones" title="Elecciones" iconName="sort" icon={this.renderTabIcon}>
-                                <Scene key="elecciones_1" component={() => { return (<Text>Elecciones</Text>) }} />
+                            <Scene key="elecciones_root" title="Elecciones" iconName="sort" icon={this.renderTabIcon}>
+                                <Scene key="index_elecciones_root" component={Elecciones} />
+                                <Scene key="grafica_elecciones_root" component={EleccionesGrafica} />
                             </Scene>
-                            <Scene key="mas" title="Mas" iconName="plus-square-o" icon={this.renderTabIcon}>
-                                <Scene key="mas_1" component={() => { return (<Text>Mas</Text>) }} />
+                            <Scene key="mas_root" title="Mas" iconName="plus-square-o" icon={this.renderTabIcon}>
+                                <Scene key="index_mas_root" component={() => { return (<Text>Mas</Text>) }} />
                             </Scene>
                         </Scene>
                     </Stack>
