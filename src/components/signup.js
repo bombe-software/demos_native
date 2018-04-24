@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
-import { Container, Content, Button, Text, Item, Label, Input } from 'native-base';
+import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
 import { graphql } from 'react-apollo';
 
 import signup from "./../mutations/signup";
 
 import GenericForm from './generics/generic_form';
+
+import { title_light, subtitle_light, image_background, primario, peligro } from '../../assets/styles.js';
+
+const background_image_url = "https://raw.githubusercontent.com/bombe-software/stock-images/master/demos_native_background_02.jpg";
 
 class SignUp extends GenericForm {
 
@@ -140,14 +144,12 @@ class SignUp extends GenericForm {
             const { avatar, localidad } = this.state;
             console.log(localidad);
             const {
-                nombre, email, password,
-                curp
+                nombre, email, password
             } = values;
             console.log(localidad);
             this.props.mutate({
                 variables: {
-                    nombre, email, password, localidad,
-                    curp, avatar
+                    nombre, email, password, localidad, avatar
                 }
             }).then(() => {
                 console.log("Casi signup");
@@ -188,7 +190,12 @@ class SignUp extends GenericForm {
         );
         return (
             <Container>
-                <Content>
+                <ImageBackground
+                    style={image_background}
+                    source={{ uri: background_image_url }}
+                >
+                <ScrollView>
+                <Content style={{padding: 10}}>
                     <Form
                         onSubmit={this.onSubmit}
                         validate={values => {
@@ -218,15 +225,6 @@ class SignUp extends GenericForm {
                             if (!values.Rpassword) {
                               errors.Rpassword = "Escriba su contraseña";
                             }
-                            if (!values.curp) {
-                              errors.curp = "Escriba su curp";
-                            }
-                            if (values.curp != undefined) {
-                              var ri = /^([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)$/i
-                              if (!ri.test(values.curp)) {
-                                errors.curp = "CURP invalido";
-                              }
-                            }
                             if (values.password != values.Rpassword) {
                               errors.Rpassword = "Asegurese que las contraseñas coincidan";
                             }
@@ -238,35 +236,50 @@ class SignUp extends GenericForm {
                           }}
 
                         render={({ handleSubmit, reset, submitting, pristine, values }) => (
-                            <View>
-                                <Field name="nombre"
-                                    component={this.renderTextField}
-                                    label="Nombre"
-                                />
-                                <Field name="email"
-                                    component={this.renderTextField}
-                                    label="Email"
-                                />
-                                <Field name="password"
-                                    component={this.renderPasswordField}
-                                    label="Password"
-                                />
-                                <Field name="Rpassword"
-                                    component={this.renderPasswordField}
-                                    label="Confirmar password"
-                                />
-                                <Field name="curp"
-                                    component={this.renderTextField}
-                                    label="Curp"
-                                />
-                                <Button onPress={handleSubmit} block >
-                                    <Text>Click Me! </Text>
+                        <View style={{marginTop: 12}}>
+                            <Text style={title_light}>Registro</Text>
+                            <View style={{marginTop: 12}}>
+
+                            <View style={{flex:1}}>
+                                <Card>
+                                <View style={{padding: 16, paddingTop: 12}}>
+                                    <Field name="nombre"
+                                        component={this.renderTextField}
+                                        label="Nombre"
+                                    />
+                                    <Field name="email"
+                                        component={this.renderTextField}
+                                        label="Email"
+                                    />
+                                    <Field name="password"
+                                        component={this.renderPasswordField}
+                                        label="Password"
+                                    />
+                                    <Field name="Rpassword"
+                                        component={this.renderPasswordField}
+                                        label="Confirmar password"
+                                    />
+                                </View>
+                                </Card>
+                                <Button block onPress={handleSubmit} onPress={handleSubmit}
+                                        style={{backgroundColor: primario, marginTop: 10}} >
+                                    <Text>Ingresar</Text>
                                 </Button>
+                                <Button block light small transparent
+                                    onPress={() => Actions.landing_before()}
+                                    style={{marginTop: 8}}
+                                >
+                                    <Text>Regresar</Text>
+                                </Button>
+                            </View>
+                            </View>
                             </View>
                         )}
                     />
                     <Label style={{ color: 'red', fontSize: 15 }}>{this.state.error}</Label>
                 </Content>
+                </ScrollView>
+                </ImageBackground>
             </Container>
         );
     }

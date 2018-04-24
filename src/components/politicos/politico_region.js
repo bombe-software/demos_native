@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, View } from 'react-native';
-import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
+import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, CardItem, Card, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import { graphql, compose } from 'react-apollo';
@@ -35,9 +35,21 @@ class PoliticosRegion extends Component {
                         <List dataArray={politicos}
                             renderRow={(politico) => {
                                 return (
-                                    <ListItem key={politico.id} onPress={() => { Actions.detail_politicos_root({ id_politico: politico.id }) }}  >
-                                        <Text>{politico.nombre}</Text>
-                                    </ ListItem>
+                                    <ListItem 
+                                        key={politico.id} 
+                                        onPress={() => { Actions.detail_politicos_root({ id_politico: politico.id }) }} 
+                                        style={{padding: 0, margin: 0}}>
+                                    <Card style={{ margin: 0}}>
+                                        <CardItem style={{marginBottom: 0, paddingBottom: 2}}>
+                                            <Text style ={{fontWeight: 'bold'}}>{politico.nombre}</Text>
+                                        </CardItem>
+                                        <CardItem style={{marginTop: 0, paddingTop: 2}}>
+                                            <Badge style={{backgroundColor: `rgb(${politico.partido.color})`}}>
+                                                <Text>{politico.partido.nombre}</Text>
+                                            </Badge>
+                                        </CardItem>
+                                    </Card>
+                                    </ListItem>
                                 );
                             }
                             }>

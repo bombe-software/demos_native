@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, View } from 'react-native';
-import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
+import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Card, CardItem, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import { graphql, compose } from 'react-apollo';
@@ -22,7 +22,23 @@ class PoliticoDetail extends Component {
         return (
             <Container>
                 <Content>
-                    <Text>{politico.nombre}</Text>
+                    <Card>
+                        <CardItem header>
+                        <Text>{politico.nombre}</Text>
+                        </CardItem>
+                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                            <Text>Partido: </Text>
+                            <Badge style={{backgroundColor: `rgb(${politico.partido.color})`}}>
+                                <Text>{politico.partido.nombre}</Text>
+                            </Badge>
+                        </CardItem>
+                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                            <Text>Cargo: {politico.cargo} </Text>
+                        </CardItem>
+                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                            <Text>Estado: {politico.estado.nombre} </Text>
+                        </CardItem>
+                    </Card>
                     <Segment>
                         <Button first active={this.state.tipo_vista} onPress={() => this.setState({ tipo_vista: true })}><Text>Propuestas</Text></Button>
                         <Button last active={!this.state.tipo_vista} onPress={() => this.setState({ tipo_vista: false })}><Text>Historial</Text></Button>

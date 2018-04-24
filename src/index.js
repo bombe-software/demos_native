@@ -15,7 +15,7 @@ import { ApolloProvider } from 'react-apollo';
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'http://192.168.0.17:3000/graphql',
+    uri: 'http://192.168.0.9:3000/graphql',
     credentials: 'include'
 });
 
@@ -39,7 +39,7 @@ import PoliticoDetail from "./components/politicos/politico_detail/politico_deta
 import EventoDetail from "./components/politicos/politico_detail/evento_detail";
 import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
 
-
+import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
 import Elecciones from './components/elecciones/elecciones';
 import EleccionesGrafica from './components/elecciones/elecciones_grafica';
@@ -49,7 +49,7 @@ class Demos extends Component {
 
 
     renderTabIcon({ selected, title, iconName }) {
-        var color = selected ? '#FFF' : '#000';
+        var color = selected ? primario : neutro;
 
         return (
             <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', alignSelf: 'center', justifyContent: 'center' }}>
@@ -81,22 +81,22 @@ class Demos extends Component {
                             key="root"
                             tabs={true}
                             tabBarPosition={'bottom'}
-                            tabBarStyle={{ backgroundColor: '#FFFFFF' }} >
+                            tabBarStyle={{ backgroundColor: '#FFFFFF', borderColor: '#ffffff' }} >
                             <Scene key="inicio_root" title="Inicio" iconName="home" icon={this.renderTabIcon}>
                                 <Scene key="index_inicio_root" component={() => { return (<Text>Inicio</Text>) }} />
                             </Scene>
-                            <Scene key="politicos_root" title="Politicos" iconName="save" icon={this.renderTabIcon}>
+                            <Scene key="politicos_root" title="Politicos" iconName="user" icon={this.renderTabIcon}>
                                 <Scene key="index_politicos_root" component={Politicos} />
                                 <Scene key="region_politicos_root" component={PoliticosRegion} />
                                 <Scene key="detail_politicos_root" component={PoliticoDetail} />
                                 <Scene key="eventoDetail_politicos_root" component={EventoDetail} />
                                 <Scene key="propuestaDetail_politicos_root" component={PropuestaDetail} />
                             </Scene>
-                            <Scene key="elecciones_root" title="Elecciones" iconName="sort" icon={this.renderTabIcon}>
+                            <Scene key="elecciones_root" title="Elecciones" iconName="pie-chart" icon={this.renderTabIcon}>
                                 <Scene key="index_elecciones_root" component={Elecciones} />
                                 <Scene key="grafica_elecciones_root" component={EleccionesGrafica} />
                             </Scene>
-                            <Scene key="mas_root" title="Mas" iconName="plus-square-o" icon={this.renderTabIcon}>
+                            <Scene key="mas_root" title="Mas" iconName="bars" icon={this.renderTabIcon}>
                                 <Scene key="index_mas_root" component={() => { return (<Text>Mas</Text>) }} />
                             </Scene>
                         </Scene>

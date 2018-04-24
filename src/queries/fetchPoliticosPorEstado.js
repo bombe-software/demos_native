@@ -7,7 +7,9 @@ query PoliticosPorEstado($id: ID!){
         nombre,
         cargo,
         partido {
+            id
             nombre
+            color
         }
   }
 }
