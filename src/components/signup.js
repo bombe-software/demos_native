@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
@@ -14,6 +14,8 @@ import { title_light, subtitle_light, image_background, primario, peligro } from
 
 const background_image_url = "https://raw.githubusercontent.com/bombe-software/stock-images/master/demos_native_background_02.jpg";
 
+//const urlImage = '../../assets/images/';
+
 class SignUp extends GenericForm {
 
     /**
@@ -25,10 +27,10 @@ class SignUp extends GenericForm {
     constructor(props) {
         super(props);
         this.state = {
-            avatar: '',
+            avatar: 'jaiba',
             open: true,
             localidad: '',
-            imgAvatar: ['none', 'none', 'none', 'none'],
+            imgAvatar: ['selected', 'none', 'none', 'none'],
             error: '',
             toggled: false,
             address: ''
@@ -99,7 +101,7 @@ class SignUp extends GenericForm {
     */
     updateErizo() {
         this.setState({
-            avatar: "bussines",
+            avatar: "erizo",
             imgAvatar: ['none', 'none', 'none', 'selected']
         })
     }
@@ -157,6 +159,11 @@ class SignUp extends GenericForm {
         }
     };
 
+    compareAvatar(selectedAvatar){
+        if(this.state.avatar===selectedAvatar) return primario; 
+        return 'white';
+    }
+
 
 
     /**
@@ -180,14 +187,14 @@ class SignUp extends GenericForm {
     */
     render() {
         const { handleSubmit } = this.props;
-        Alert.alert(
+        /*Alert.alert(
             'Error',
             'Password o email incorrectos',
             [
                 { text: 'OK', onPress: () => console.log('OK Pressed') }
             ],
             { cancelable: false }
-        );
+        );*/
         return (
             <Container>
                 <ImageBackground
@@ -241,7 +248,7 @@ class SignUp extends GenericForm {
                             <View style={{marginTop: 12}}>
 
                             <View style={{flex:1}}>
-                                <Card>
+                                <View style={styles.card}>
                                 <View style={{padding: 16, paddingTop: 12}}>
                                     <Field name="nombre"
                                         component={this.renderTextField}
@@ -259,8 +266,61 @@ class SignUp extends GenericForm {
                                         component={this.renderPasswordField}
                                         label="Confirmar password"
                                     />
+
                                 </View>
-                                </Card>
+                                <Text style={{paddingHorizontal: 16, paddingVertical: 4}}>Selecciona un avatar:</Text>
+                                <View style={{flex: 1, flexDirection: 'row', padding: 12}}>
+                                    <View style={{
+                                        padding: 4,
+                                        backgroundColor: this.compareAvatar('jaiba'),
+                                        margin: 4,
+                                    }}>
+                                        <TouchableHighlight onPress={this.updateJaiba}>
+                                        <Image
+                                        source={require('./../../assets/images/jaiba.png')}
+                                        style={styles.avatarImage}
+                                        />
+                                        </TouchableHighlight>
+                                    </View>
+                                    <View style={{
+                                        padding: 4,
+                                        backgroundColor: this.compareAvatar('anguila'),
+                                        margin: 4,
+                                    }}>
+                                        <TouchableHighlight onPress={this.updateAnguila}>
+                                        <Image
+                                        source={require('./../../assets/images/anguila.png')}
+                                        style={styles.avatarImage}
+                                        />
+                                        </TouchableHighlight>
+                                    </View>
+                                    <View style={{
+                                        padding: 4,
+                                        backgroundColor: this.compareAvatar('chivo'),
+                                        margin: 4,
+                                    }}>
+                                        <TouchableHighlight onPress={this.updateChivo}>
+                                        <Image
+                                        source={require('./../../assets/images/chivo.png')}
+                                        style={styles.avatarImage}
+                                        />
+                                        </TouchableHighlight>
+                                    </View>
+                                    <View style={{
+                                        padding: 4,
+                                        backgroundColor: this.compareAvatar('erizo'),
+                                        margin: 4,
+                                    }}>
+                                        <TouchableHighlight onPress={this.updateErizo}>
+                                        <Image
+                                        source={require('./../../assets/images/erizo.png')}
+                                        style={styles.avatarImage}
+                                        />
+                                        </TouchableHighlight>
+                                    </View>
+                                </View>
+
+                                </View>
                                 <Button block onPress={handleSubmit} onPress={handleSubmit}
                                         style={{backgroundColor: primario, marginTop: 10}} >
                                     <Text>Ingresar</Text>
@@ -284,5 +344,16 @@ class SignUp extends GenericForm {
         );
     }
 }
+
+var styles = StyleSheet.create({
+    avatarImage: {
+        width: (Dimensions.get('window').width/4)-28,
+        height: (Dimensions.get('window').width/4)-28,
+    },
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+    }
+});
 
 export default graphql(signup)(SignUp);
