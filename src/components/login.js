@@ -37,7 +37,7 @@ class Login extends GenericForm {
             date: (new Date().getMonth() + "/" + new Date().getFullYear())
         };
 
-        const request = axios.post("http://192.168.0.16:5000/ticket_controller", ticket);
+        const request = axios.post("https://demos-krb.herokuapp.com/ticket_controller", ticket);
 
         request.then(({ data }) => {
             if (data.message != 404) {
