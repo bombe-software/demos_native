@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
@@ -18,9 +18,23 @@ class Mas extends Component {
                 <Content>
                     
                     <List>
-                    <ListItem key='perfilUsuario' onPress={()=>{Actions.perfil_mas_root()}}  >
-                        <Text>Perfil de usuario</Text>
-                    </ ListItem>
+                        <ListItem icon onPress={()=>{Actions.perfil_mas_root()}} >
+                        <Left>
+                            <Icon name="user" />
+                        </Left>
+                        <Body>
+                            <Text>Mi perfil</Text>
+                        </Body>
+                        </ListItem>
+
+                        <ListItem icon onPress={()=>{Actions.busqueda_mas_root()}} >
+                        <Left>
+                            <Icon name="search" />
+                        </Left>
+                        <Body>
+                            <Text>Buscar</Text>
+                        </Body>
+                        </ListItem>
                     </List>
                     
                 </Content>

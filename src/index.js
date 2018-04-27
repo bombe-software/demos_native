@@ -40,12 +40,13 @@ import PoliticoDetail from "./components/politicos/politico_detail/politico_deta
 import EventoDetail from "./components/politicos/politico_detail/evento_detail";
 import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
 
-//Denuncia
+//Mas
 import DenunciaFeed from "./components/denuncia/denunciaFeed";
 
 //Importar modulos de mas
 import Mas from "./components/mas/mas";
 import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
+import Busqueda from './components/mas/busqueda/busqueda';
 
 import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
@@ -88,6 +89,7 @@ class Demos extends Component {
                             </Scene>
                         </Scene>
 
+
                         <Scene
                             key="root"
                             tabs={true}
@@ -110,6 +112,7 @@ class Demos extends Component {
                             <Scene key="mas_root" title="Más Opciones" iconName="bars" icon={this.renderTabIcon}>
                                 <Scene key="index_mas_root" component={Mas} />
                                 <Scene key="perfil_mas_root" component={PerfilUsuario} />
+                                <Scene key="busqueda_mas_root" component={Busqueda} />
                             </Scene>
                         </Scene>
                     </Stack>

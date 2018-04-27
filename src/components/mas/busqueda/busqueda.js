@@ -10,12 +10,11 @@ class Busqueda extends Component {
     render() {
         return (
             <Container>
-                
                 <ScrollView>
                 <Content>
-                    
+                    <View>
                    <Text>Busqueda</Text>
-                    
+                    </View>
                 </Content>
                 </ScrollView>
             </Container>

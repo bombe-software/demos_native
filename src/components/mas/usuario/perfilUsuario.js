@@ -20,7 +20,7 @@ class PerfilUsuario extends Component {
                 <Content>
                     
                     <View style={{
-                        backgroundColor: '#74002D',
+                        backgroundColor: '#3DC098',
                         flex: 1,
                         padding: 16,
                         paddingTop: 20,
@@ -35,22 +35,22 @@ class PerfilUsuario extends Component {
                     </View>
 
                     <View style={styles.card}>
-                    <View style={{flex: 1, flexDirection: 'row', padding: 12}}>
+                    <View style={{flex: 1, flexDirection: 'row', padding: 12, alignItems: 'center',}}>
                         
                         <Image
                             source={require('./../../../../assets/images/jaiba.png')}
                             style={styles.avatarImage}
                         />
 
-                        <View>
-                        <Text>
-                            CorreoElectrónico
+                        <View style={{marginLeft: 16}}>
+                        <Text style={{marginBottom: 8}}>
+                            Correo Electrónico:
                         </Text>
-                        <Text>
-                            Localidad
+                        <Text style={{marginBottom: 8}}>
+                            Localidad: 
                         </Text>
-                        <Text>
-                            Puntuación
+                        <Text style={{marginBottom: 8}}>
+                            Puntuación:
                         </Text>
                         </View> 
                     </View>
@@ -69,8 +69,9 @@ var styles = StyleSheet.create({
         borderRadius: 8,
     }, 
     avatarImage: {
-        width: (Dimensions.get('window').width/4)-28,
-        height: (Dimensions.get('window').width/4)-28,
+        width: (Dimensions.get('window').width/4)-20,
+        height: (Dimensions.get('window').width/4)-20,
+        padding: 24,
     },
 });
 

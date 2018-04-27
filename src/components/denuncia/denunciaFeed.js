@@ -12,9 +12,9 @@ class DenunciaFeed extends Component {
             <Container>
                 <ScrollView>
                 <Content>
-                    
+                <View>
                    <Text>Denuncia Feed</Text>
-                    
+                   </View>
                 </Content>
                 </ScrollView>
             </Container>
