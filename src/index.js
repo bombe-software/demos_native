@@ -41,12 +41,12 @@ import EventoDetail from "./components/politicos/politico_detail/evento_detail";
 import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
 import DenunciaFeed from "./components/denuncia/denunciaFeed";
 import Mas from "./components/mas/mas";
+import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
 
 import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
 import Elecciones from './components/elecciones/elecciones';
 import EleccionesGrafica from './components/elecciones/elecciones_grafica';
-import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
 
 //Configuracion del router
 class Demos extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
@@ -13,15 +13,12 @@ class Mas extends Component {
     render() {
         return (
             <Container>
-                >
                 <ScrollView>
                 <Content>
                     
-                    <List>
-                    <ListItem key='perfilUsuario' onPress={()=>{Actions.perfil_mas_root()}}  >
+                    <TouchableHighlight onPress={()=>{Actions.perfil_mas_root()}}  >
                         <Text>Perfil de usuario</Text>
-                    </ ListItem>
-                    </List>
+                    </ TouchableHighlight>
                     
                 </Content>
                 </ScrollView>

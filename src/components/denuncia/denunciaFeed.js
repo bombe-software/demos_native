@@ -10,7 +10,6 @@ class DenunciaFeed extends Component {
     render() {
         return (
             <Container>
-                >
                 <ScrollView>
                 <Content>
                 <View>
