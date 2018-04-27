@@ -15,7 +15,7 @@ import { ApolloProvider } from 'react-apollo';
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'http://192.168.0.9:3000/graphql',
+    uri: 'http://192.168.0.16:3000/graphql',
     credentials: 'include'
 });
 
@@ -42,6 +42,8 @@ import PropuestaDetail from "./components/politicos/politico_detail/propuesta_de
 
 //Mas
 import DenunciaFeed from "./components/denuncia/denunciaFeed";
+
+//Importar modulos de mas
 import Mas from "./components/mas/mas";
 import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
 import Busqueda from './components/mas/busqueda/busqueda';
@@ -86,6 +88,7 @@ class Demos extends Component {
                                 <Scene key="recover_pass_before" component={RecoverPassword} />
                             </Scene>
                         </Scene>
+
 
                         <Scene
                             key="root"
