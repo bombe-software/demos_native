@@ -114,9 +114,9 @@ class Demos extends Component {
                                 <Scene key="denuncia_feed_root" component={DenunciaFeed} />
                             </Scene>
                             <Scene key="mas_root" title="Más Opciones" iconName="bars" icon={this.renderTabIcon}>
-                                <Scene key="index_mas_root" component={Mas} />
-                                <Scene key="perfil_mas_root" component={PerfilUsuario} />
-                                <Scene key="busqueda_mas_root" component={Busqueda} />
+                                <Scene key="index_mas_root" title="Más Opciones" component={Mas} />
+                                <Scene key="perfil_mas_root" title="Perfil de usuario" component={PerfilUsuario} />
+                                <Scene key="busqueda_mas_root" title="Búsqueda" component={Busqueda} />
                             </Scene>
                         </Scene>
                     </Stack>
