@@ -52,6 +52,7 @@ import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
 import Elecciones from './components/elecciones/elecciones';
 import EleccionesGrafica from './components/elecciones/elecciones_grafica';
+import ConfirmEmail from "./components/confirm_email";
 
 //Configuracion del router
 class Demos extends Component {
@@ -86,6 +87,9 @@ class Demos extends Component {
                             </Scene>
                             <Scene key="recover_pass" title="Recuperar Contraseña" hideNavBar>
                                 <Scene key="recover_pass_before" component={RecoverPassword} />
+                            </Scene>
+                            <Scene key="confirm_email" title="Verificar Correo" hideNavBar>
+                                <Scene key="confirm_email_before" component={ConfirmEmail} />
                             </Scene>
                         </Scene>
 

@@ -325,7 +325,7 @@ class SignUp extends GenericForm {
                                                     <Text>Ingresar</Text>
                                                 </Button>
                                                 <Button block light small transparent
-                                                    onPress={() => Actions.landing_before()}
+                                                    onPress={() => Actions.confirm_email_before()}
                                                     style={{ marginTop: 8 }}
                                                 >
                                                     <Text>Regresar</Text>

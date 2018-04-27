@@ -29,7 +29,7 @@ class PerfilUsuario extends Component {
                     }}>
 
                     <Text style={{fontSize: 20, color: 'white'}}>
-                        NombreDeUsuario
+                        @hgwells07
                     </Text>                        
 
                     </View>
@@ -44,13 +44,13 @@ class PerfilUsuario extends Component {
 
                         <View style={{marginLeft: 16}}>
                         <Text style={{marginBottom: 8}}>
-                            Correo Electrónico:
+                            Correo Electrónico: carlitose07@gmail.com
                         </Text>
                         <Text style={{marginBottom: 8}}>
-                            Localidad: 
+                            Localidad: Ciudad de México
                         </Text>
                         <Text style={{marginBottom: 8}}>
-                            Puntuación:
+                            Puntuación: -20
                         </Text>
                         </View> 
                     </View>
