@@ -19,7 +19,7 @@ const background_image_url = "https://raw.githubusercontent.com/bombe-software/s
 
 
 class RecoverPassword extends GenericForm {
-/*
+
     constructor(props) {
         super(props);
     
@@ -29,20 +29,21 @@ class RecoverPassword extends GenericForm {
         };
         this.onSubmit = this.onSubmit.bind(this);
       }
+    
       async onSubmit(values) {
         const { email } = values;
         this.props.mutate({
           variables: {
             email
           },
-        }).then(() => this.props.history.push("/login"))
+        }).then(data => Actions.login_before())
           .catch(res => {
             const errors = res.graphQLErrors.map(error => error.message);
             const error = errors[0]
             this.setState({ error });
           });
       };
-*/
+
 
     render() {
         return (

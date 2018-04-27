@@ -8,7 +8,7 @@ import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } 
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
 
-class Mas extends GenericForm {
+class Mas extends Component {
 
     render() {
         return (

@@ -46,6 +46,7 @@ import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
 import Elecciones from './components/elecciones/elecciones';
 import EleccionesGrafica from './components/elecciones/elecciones_grafica';
+import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
 
 //Configuracion del router
 class Demos extends Component {
@@ -104,7 +105,7 @@ class Demos extends Component {
                             </Scene>
                             <Scene key="mas_root" title="Más Opciones" iconName="bars" icon={this.renderTabIcon}>
                                 <Scene key="index_mas_root" component={Mas} />
-                                <Scene key="perfil_mas_root" component={Mas} />
+                                <Scene key="perfil_mas_root" component={PerfilUsuario} />
                             </Scene>
                         </Scene>
                     </Stack>

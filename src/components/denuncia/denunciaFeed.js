@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
 
 
-class DenunciaFeed extends GenericForm {
+class DenunciaFeed extends Component {
 
     render() {
         return (
@@ -13,9 +13,9 @@ class DenunciaFeed extends GenericForm {
                 >
                 <ScrollView>
                 <Content>
-                    
+                <View>
                    <Text>Denuncia Feed</Text>
-                    
+                   </View>
                 </Content>
                 </ScrollView>
             </Container>
