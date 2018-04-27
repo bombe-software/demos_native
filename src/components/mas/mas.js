@@ -3,7 +3,9 @@ import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighligh
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
-import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
+import { Container, Content, Text, List, ListItem, Left, Body } from 'native-base';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
@@ -16,9 +18,25 @@ class Mas extends Component {
                 <ScrollView>
                 <Content>
                     
-                    <TouchableHighlight onPress={()=>{Actions.perfil_mas_root()}}  >
-                        <Text>Perfil de usuario</Text>
-                    </ TouchableHighlight>
+                    <List>
+                        <ListItem icon onPress={()=>{Actions.perfil_mas_root()}} >
+                        <Left>
+                            <Icon name="user" />
+                        </Left>
+                        <Body>
+                            <Text>Mi perfil</Text>
+                        </Body>
+                        </ListItem>
+
+                        <ListItem icon onPress={()=>{Actions.busqueda_mas_root()}} >
+                        <Left>
+                            <Icon name="search" />
+                        </Left>
+                        <Body>
+                            <Text>Buscar</Text>
+                        </Body>
+                        </ListItem>
+                    </List>
                     
                 </Content>
                 </ScrollView>

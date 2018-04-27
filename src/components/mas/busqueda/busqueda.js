@@ -10,7 +10,6 @@ class Busqueda extends Component {
     render() {
         return (
             <Container>
-                >
                 <ScrollView>
                 <Content>
                     <View>
