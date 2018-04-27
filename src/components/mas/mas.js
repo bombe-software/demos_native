@@ -3,17 +3,17 @@ import { View, Alert, ImageBackground, ScrollView, StyleSheet } from 'react-nati
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
-import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
+import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem } from 'native-base';
 
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
 
-class Mas extends GenericForm {
+class Mas extends Component {
 
     render() {
         return (
             <Container>
-                >
+                
                 <ScrollView>
                 <Content>
                     

@@ -5,12 +5,12 @@ import { Actions } from 'react-native-router-flux';
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
 
 
-class Busqueda extends GenericForm {
+class Busqueda extends Component {
 
     render() {
         return (
             <Container>
-                >
+                
                 <ScrollView>
                 <Content>
                     

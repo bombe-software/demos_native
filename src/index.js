@@ -15,7 +15,7 @@ import { ApolloProvider } from 'react-apollo';
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'http://192.168.0.9:3000/graphql',
+    uri: 'http://192.168.0.16:3000/graphql',
     credentials: 'include'
 });
 
@@ -39,8 +39,13 @@ import PoliticosRegion from './components/politicos/politico_region';
 import PoliticoDetail from "./components/politicos/politico_detail/politico_detail";
 import EventoDetail from "./components/politicos/politico_detail/evento_detail";
 import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
+
+//Denuncia
 import DenunciaFeed from "./components/denuncia/denunciaFeed";
+
+//Importar modulos de mas
 import Mas from "./components/mas/mas";
+import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
 
 import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 //Elecciones
@@ -104,7 +109,7 @@ class Demos extends Component {
                             </Scene>
                             <Scene key="mas_root" title="Más Opciones" iconName="bars" icon={this.renderTabIcon}>
                                 <Scene key="index_mas_root" component={Mas} />
-                                <Scene key="perfil_mas_root" component={Mas} />
+                                <Scene key="perfil_mas_root" component={PerfilUsuario} />
                             </Scene>
                         </Scene>
                     </Stack>

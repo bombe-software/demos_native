@@ -11,7 +11,7 @@ import fetchUsuario from './../../../queries/fetchUsuario';
 import { title_light, subtitle_light, image_background, primario, peligro } from '../../../../assets/styles';
 
 
-class PerfilUsuario extends GenericForm {
+class PerfilUsuario extends Component {
 
     render() {
         return (
