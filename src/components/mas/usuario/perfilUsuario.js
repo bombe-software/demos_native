@@ -20,7 +20,7 @@ class PerfilUsuario extends Component {
                 <Content>
                     
                     <View style={{
-                        backgroundColor: '#74002D',
+                        backgroundColor: '#3DC098',
                         flex: 1,
                         padding: 16,
                         paddingTop: 20,
