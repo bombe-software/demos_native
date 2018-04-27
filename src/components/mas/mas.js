@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem, Left, Body } from 'native-base';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
 
