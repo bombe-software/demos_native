@@ -15,7 +15,7 @@ import { ApolloProvider } from 'react-apollo';
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'http://192.168.0.16:3000/graphql',
+    uri: 'http://192.168.20.185:3000/graphql',
     credentials: 'include'
 });
 
