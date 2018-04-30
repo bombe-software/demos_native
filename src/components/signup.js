@@ -161,6 +161,7 @@ class SignUp extends GenericForm {
                     nombre, email, password, localidad, avatar
                 }
             }).then(() => {
+                Actions.confirm_email_before();
                 console.log("Casi signup");
             });
         }
