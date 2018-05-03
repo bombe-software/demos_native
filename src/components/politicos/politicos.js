@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -19,12 +19,24 @@ class Politicos extends Component {
         if (this.props.data.loading) return <Container><Spinner /></Container>
         console.log(this.props.data);
         return (
-            <Container>
+            <Container style={styles.backgroundColor}>
                 <Content>
-                    <Segment>
-                        <Button first active={this.state.is_candidato} onPress={() => this.setState({ is_candidato: true })}><Text>Candidato</Text></Button>
-                        <Button last active={!this.state.is_candidato} onPress={() => this.setState({ is_candidato: false })}><Text>Funcionario</Text></Button>
+                    <View>
+                    <Segment style={styles.segmentButton} >
+                        <Button 
+                            first 
+                            active={this.state.is_candidato} 
+                            onPress={() => this.setState({ is_candidato: true })}>
+                                <Text>Candidato</Text>
+                        </Button>
+                        <Button 
+                            last 
+                            active={!this.state.is_candidato} 
+                            onPress={() => this.setState({ is_candidato: false })}>
+                                <Text>Funcionario</Text>
+                        </Button>
                     </Segment>
+                    </View>
                     <List dataArray={this.props.data.estados}
                         renderRow={(estado) =>
                             <ListItem key={estado.id}  onPress={()=>{Actions.region_politicos_root({id_estado: estado.id, is_candidato: this.state.is_candidato})}}  >
@@ -38,6 +50,14 @@ class Politicos extends Component {
     }
 }
 
+let styles = StyleSheet.create({
+    segmentButton: {
+        backgroundColor: '#4E4E4E'
+    },
+    backgroundColor: {
+        backgroundColor: '#F9F9F9',
+    }
+});
 
 
 export default graphql(fetch_estados)(Politicos);

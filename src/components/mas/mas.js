@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
-
+import { graphql } from 'react-apollo';
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem, Left, Body } from 'native-base';
@@ -9,8 +9,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
+import logout from "../../mutations/logout";  
+import usuario from "../../queries/fetchUsuario";
 
 class Mas extends Component {
+
+    logout(){
+        this.props.mutate({
+          refetchQueries: [{ query: usuario }]
+        });
+      }
 
     render() {
         return (
@@ -37,6 +45,14 @@ class Mas extends Component {
                             <Text>Buscar</Text>
                         </Body>
                         </ListItem>
+                        <ListItem icon onPress={()=>{Actions.landing_before()}} >
+                        <Left>
+                            <Icon name="sign-out" />
+                        </Left>
+                        <Body>
+                            <Text>Cerrar Sesión</Text>
+                        </Body>
+                        </ListItem>
                     </List>
                     
                 </Content>
@@ -53,4 +69,4 @@ var styles = StyleSheet.create({
     }
 });
 
-export default Mas;
+export default graphql(logout)(graphql(usuario)(Mas));

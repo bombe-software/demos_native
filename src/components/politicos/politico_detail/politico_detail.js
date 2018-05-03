@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, StyleSheet, ScrollView } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Card, CardItem, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -21,47 +21,34 @@ class PoliticoDetail extends Component {
 
         return (
             <Container>
+                <ScrollView>
                 <Content>
-                    <Card>
-                        <CardItem header>
-                        <Text>{politico.nombre}</Text>
-                        </CardItem>
-                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                    <View style={{backgroundColor: 'white', padding: 20}}>
+                        <Text style={{fontSize: 28, fontWeight: 'bold', marginBottom: 10}}>{politico.nombre}</Text>
+                        <View style={{paddingBottom: 0, paddingTop: 0}}>
                             <Text>Partido: </Text>
                             <Badge style={{backgroundColor: `rgb(${politico.partido.color})`}}>
-                                <Text>{politico.partido.nombre}</Text>
+                                <Text>
+                                {politico.partido.nombre}
+                                </Text>
                             </Badge>
-                        </CardItem>
-                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                        </View>
+                        <View style={{paddingBottom: 0, paddingTop: 0}}>
                             <Text>Cargo: {politico.cargo} </Text>
-                        </CardItem>
-                        <CardItem style={{paddingBottom: 0, paddingTop: 0}}>
+                        </View>
+                        <View style={{paddingBottom: 0, paddingTop: 0}}>
                             <Text>Estado: {politico.estado.nombre} </Text>
-                        </CardItem>
-                    </Card>
+                        </View>
+                    </View>
+                    <View style={styles.segmentButton}> 
                     <Segment>
                         <Button first active={this.state.tipo_vista} onPress={() => this.setState({ tipo_vista: true })}><Text>Propuestas</Text></Button>
                         <Button last active={!this.state.tipo_vista} onPress={() => this.setState({ tipo_vista: false })}><Text>Historial</Text></Button>
                     </Segment>
+                    </View>
                     {(this.state.tipo_vista) ? (
-                        (politico.eventos.length != 0) ? (
-                            <List dataArray={politico.eventos}
-                                renderRow={(evento) => {
-                                    return (
-                                        <ListItem key={evento.id} onPress={() => { Actions.eventoDetail_politicos_root({ id_evento: evento.id }) }}  >
-                                            <Text>{evento.titulo}</Text>
-                                        </ ListItem>
-                                    );
-                                }
-                                }>
-                            </List>
-                        ) : (
-                                <View>
-                                    <Text>No hay resultados para mostrar</Text>
-                                </View>
-                            )
-                    ) : (
                             (politico.propuestas.length != 0) ? (
+                                <View style={{minHeight: 30}}>
                                 <List dataArray={politico.propuestas}
                                     renderRow={(propuesta) => {
                                         return (
@@ -72,17 +59,50 @@ class PoliticoDetail extends Component {
                                     }
                                     }>
                                 </List>
+                                </View>
                             ) : (
-                                    <View>
+                                    <View style={styles.centerText}>
+                                        <Text>No hay resultados para mostrar</Text>
+                                    </View>
+                                )
+                        ) : (
+                            (politico.eventos.length != 0) ? (
+                                <View style={{minHeight: 30}}>
+                                <List dataArray={politico.eventos}
+                                    renderRow={(evento) => {
+                                        return (
+                                            <ListItem key={evento.id} onPress={() => { Actions.eventoDetail_politicos_root({ id_evento: evento.id }) }}  >
+                                                <Text>{evento.titulo}</Text>
+                                            </ ListItem>
+                                        );
+                                    }
+                                    }>
+                                </List>
+                                </View>
+                            ) : (
+                                    <View style={styles.centerText}>
                                         <Text>No hay resultados para mostrar</Text>
                                     </View>
                                 )
                         )}
                 </Content>
+                </ScrollView>
             </Container>
         );
     }
 }
+
+let styles = StyleSheet.create({
+    segmentButton: {
+        backgroundColor: '#4E4E4E'
+    },
+    centerText: {
+        flex: 1,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
 
 export default graphql(fetchPoliticoDetail, {
     options: (props) => { return { variables: { id: props.id_politico } } }
