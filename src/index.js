@@ -13,9 +13,12 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 
+//Constantes
+import {demos_gql_http} from './../deploy'
+
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
-    uri: 'https://demos-gql.herokuapp.com/graphql',
+    uri: `${demos_gql_http}/graphql`,
     credentials: 'include'
 });
 
