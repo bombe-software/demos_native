@@ -102,12 +102,12 @@ class Demos extends Component {
                             tabs={true}
                             tabBarPosition={'bottom'}
                             tabBarStyle={{ backgroundColor: '#FFFFFF', borderColor: '#ffffff' }} >
-                            <Scene key="politicos_root" title="Politicos" iconName="user" icon={this.renderTabIcon}>
+                            <Scene key="politicos_root" title="Políticos" iconName="user" icon={this.renderTabIcon}>
                                 <Scene key="index_politicos_root" component={Politicos} />
                                 <Scene key="region_politicos_root" component={PoliticosRegion} />
-                                <Scene key="detail_politicos_root" component={PoliticoDetail} />
-                                <Scene key="eventoDetail_politicos_root" component={EventoDetail} />
-                                <Scene key="propuestaDetail_politicos_root" component={PropuestaDetail} />
+                                <Scene key="detail_politicos_root" title="Político" component={PoliticoDetail} />
+                                <Scene key="eventoDetail_politicos_root" title="Evento" component={EventoDetail} />
+                                <Scene key="propuestaDetail_politicos_root"title="Propuesta"  component={PropuestaDetail} />
                             </Scene>
                             <Scene key="elecciones_root" title="Elecciones" iconName="pie-chart" icon={this.renderTabIcon}>
                                 <Scene key="index_elecciones_root" component={Elecciones} />

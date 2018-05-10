@@ -78,6 +78,14 @@ class Politicos extends Component {
     }
 }
 
+let styles = StyleSheet.create({
+    segmentButton: {
+        backgroundColor: '#4E4E4E'
+    },
+    backgroundColor: {
+        backgroundColor: '#F9F9F9',
+    }
+});
 
 
 export default graphql(fetch_estados)(Politicos);
