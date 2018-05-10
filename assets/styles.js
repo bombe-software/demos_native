@@ -21,6 +21,12 @@ export var image_background = {
     justifyContent: 'center',
 }
 
+export const bgColor = '#F9F9F9';
+
+export var backgroundColor = {
+    backgroundColor: bgColor
+}
+
 export var primario = '#45C49E';
 export var secundario = '#7356C9';
 export var peligro = '#EA5388';

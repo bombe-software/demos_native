@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, StyleSheet } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, CardItem, Card, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+
+import {bgColor} from './../../../assets/styles'
 
 import { graphql, compose } from 'react-apollo';
 import fetch_politicos from './../../queries/fetchPoliticosPorEstado';
@@ -29,26 +31,26 @@ class PoliticosRegion extends Component {
             });
         }
         return (
-            <Container>
+            <Container style={{backgroundColor: bgColor}}>
                 <Content>
                     {(politicos.length != 0) ?(
-                        <List dataArray={politicos}
+                        <List style={{margin: 0, padding: 0}} dataArray={politicos}
                             renderRow={(politico) => {
                                 return (
                                     <ListItem 
                                         key={politico.id} 
                                         onPress={() => { Actions.detail_politicos_root({ id_politico: politico.id }) }} 
                                         style={{padding: 0, margin: 0}}>
-                                    <Card style={{ margin: 0}}>
-                                        <CardItem style={{marginBottom: 0, paddingBottom: 2}}>
+                                    <View>
+                                        <View style={{marginBottom: 0, paddingBottom: 2}}>
                                             <Text style ={{fontWeight: 'bold'}}>{politico.nombre}</Text>
-                                        </CardItem>
-                                        <CardItem style={{marginTop: 0, paddingTop: 2}}>
+                                        </View>
+                                        <View style={{marginTop: 0, paddingTop: 2}}>
                                             <Badge style={{backgroundColor: `rgb(${politico.partido.color})`}}>
                                                 <Text>{politico.partido.nombre}</Text>
                                             </Badge>
-                                        </CardItem>
-                                    </Card>
+                                        </View>
+                                    </View>
                                     </ListItem>
                                 );
                             }
@@ -66,8 +68,6 @@ class PoliticosRegion extends Component {
         );
     }
 }
-
-
 
 export default graphql(fetch_politicos, {
     options: (props) => { return { variables: { id: props.id_estado } } }

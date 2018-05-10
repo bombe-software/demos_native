@@ -10,6 +10,10 @@ export default gql`
         fecha_registro,
         password,
         avatar,
+        localidad {
+            id
+            nombre
+        }
         tipo_usuario{
             tipo
         }
