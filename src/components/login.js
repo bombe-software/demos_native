@@ -111,7 +111,7 @@ class Login extends GenericForm {
                             <Text style={title_light}>Inicio de Sesión</Text>
                             <View style={{flex:1}}>
                                 <View style={styles.card}>
-                                    <View style={{padding: 16, paddingTop: 12}}>
+                                    <View style={{padding: 16}}>
                                     <Field name="email"
                                         component={this.renderTextField}
                                         label="Email"
