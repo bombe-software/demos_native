@@ -2,7 +2,7 @@
 import "core-js/es6/symbol";
 import "core-js/fn/symbol/iterator";
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -14,7 +14,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 
 //Constantes
-import {demos_gql_http} from './../deploy'
+import { demos_gql_http } from './../deploy'
 
 //Configuracion del cliente de apollo 
 const link = createHttpLink({
@@ -78,8 +78,8 @@ class Demos extends Component {
             <ApolloProvider client={client}>
                 <Router>
                     <Stack hideNavBar>
-                        <Scene key="before" hideNavBar>
-                        <Scene key="landing" title="landing" hideNavBar>
+                        <Scene key="before"  hideNavBar>
+                            <Scene key="landing" title="landing" hideNavBar>
                                 <Scene key="landing_before" component={LandingPage} />
                             </Scene>
                             <Scene key="signup" title="Signup" hideNavBar>
@@ -107,7 +107,7 @@ class Demos extends Component {
                                 <Scene key="region_politicos_root" component={PoliticosRegion} />
                                 <Scene key="detail_politicos_root" title="Político" component={PoliticoDetail} />
                                 <Scene key="eventoDetail_politicos_root" title="Evento" component={EventoDetail} />
-                                <Scene key="propuestaDetail_politicos_root"title="Propuesta"  component={PropuestaDetail} />
+                                <Scene key="propuestaDetail_politicos_root" title="Propuesta" component={PropuestaDetail} />
                             </Scene>
                             <Scene key="elecciones_root" title="Elecciones" iconName="pie-chart" icon={this.renderTabIcon}>
                                 <Scene key="index_elecciones_root" component={Elecciones} />
@@ -131,3 +131,5 @@ class Demos extends Component {
 }
 
 export default Demos;
+
+

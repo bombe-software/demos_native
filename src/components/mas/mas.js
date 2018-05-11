@@ -3,59 +3,61 @@ import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighligh
 import { graphql } from 'react-apollo';
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
-import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem, Left, Body } from 'native-base';
+import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem, Left, Body, Spinner } from 'native-base';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { title_light, subtitle_light, image_background, primario, peligro } from './../../../assets/styles';
 
-import logout from "../../mutations/logout";  
+import logout from "../../mutations/logout";
 import usuario from "../../queries/fetchUsuario";
 
 class Mas extends Component {
 
-    logout(){
+    logout() {
         this.props.mutate({
-          refetchQueries: [{ query: usuario }]
+            refetchQueries: [{ query: usuario }]
         });
-      }
+    }
 
     render() {
+        if (this.props.data.loading)  return <Container><Spinner /></Container>
         return (
             <Container>
-                
                 <ScrollView>
-                <Content>
-                    
-                    <List>
-                        <ListItem icon onPress={()=>{Actions.perfil_mas_root()}} >
-                        <Left>
-                            <Icon name="user" />
-                        </Left>
-                        <Body>
-                            <Text>Mi perfil</Text>
-                        </Body>
-                        </ListItem>
+                    <Content>
+                        <List>
+                            {this.props.data.usuario ?
+                                <ListItem icon onPress={() => { Actions.perfil_mas_root() }} >
+                                    <Left>
+                                        <Icon name="user" />
+                                    </Left>
+                                    <Body>
+                                        <Text>Mi perfil</Text>
+                                    </Body>
+                                </ListItem>
+                            : <Text/>}
+                            <ListItem icon onPress={() => { Actions.busqueda_mas_root() }} >
+                                <Left>
+                                    <Icon name="search" />
+                                </Left>
+                                <Body>
+                                    <Text>Buscar</Text>
+                                </Body>
+                            </ListItem>
+                            {this.props.data.usuario ?
+                                <ListItem icon onPress={() => { Actions.landing_before() }} >
+                                    <Left>
+                                        <Icon name="sign-out" />
+                                    </Left>
+                                    <Body>
+                                        <Text>Cerrar Sesión</Text>
+                                    </Body>
+                                </ListItem>
+                                : <Text/>}
 
-                        <ListItem icon onPress={()=>{Actions.busqueda_mas_root()}} >
-                        <Left>
-                            <Icon name="search" />
-                        </Left>
-                        <Body>
-                            <Text>Buscar</Text>
-                        </Body>
-                        </ListItem>
-                        <ListItem icon onPress={()=>{Actions.landing_before()}} >
-                        <Left>
-                            <Icon name="sign-out" />
-                        </Left>
-                        <Body>
-                            <Text>Cerrar Sesión</Text>
-                        </Body>
-                        </ListItem>
-                    </List>
-                    
-                </Content>
+                        </List>
+                    </Content>
                 </ScrollView>
             </Container>
         );
