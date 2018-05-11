@@ -49,6 +49,7 @@ import DenunciaFeed from "./components/denuncia/denunciaFeed";
 //Importar modulos de mas
 import Mas from "./components/mas/mas";
 import PerfilUsuario from "./components/mas/usuario/perfilUsuario";
+import ConfigCuenta from './components/mas/usuario/config_cuenta/config_cuenta';
 import Busqueda from './components/mas/busqueda/busqueda';
 
 import { secundario, primario, peligro, neutro } from './../assets/styles.js';
@@ -122,6 +123,7 @@ class Demos extends Component {
                                 <Scene key="index_mas_root" title="Más Opciones" component={Mas} />
                                 <Scene key="perfil_mas_root" title="Perfil de usuario" component={PerfilUsuario} />
                                 <Scene key="busqueda_mas_root" title="Búsqueda" component={Busqueda} />
+                                <Scene key="config_cuenta" title="Configurar Cuenta" component={ConfigCuenta} />
                             </Scene>
                         </Scene>
                     </Stack>
