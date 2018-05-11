@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
-import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
+import { Alert, View, StyleSheet, FlatList, Dimensions, TouchableOpacity } from 'react-native';
+import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Header} from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import { graphql, compose } from 'react-apollo';
 import fetch_estados from './../../queries/fetchEstados';
+
+import {primario} from '../../../assets/styles'
+
+const white = 'white';
 
 class Politicos extends Component {
 
@@ -19,29 +23,53 @@ class Politicos extends Component {
         if (this.props.data.loading) return <Container><Spinner /></Container>
         console.log(this.props.data);
         return (
-            <Container style={styles.backgroundColor}>
+            <Container>
                 <Content>
-                    <View>
-                    <Segment style={styles.segmentButton} >
+                    <View style={styles.twoColumnContainer}>
                         <Button 
-                            first 
                             active={this.state.is_candidato} 
+                            style={this.state.is_candidato
+                                ?
+                                    styles.activeButton
+                                :
+                                    styles.inactiveButton
+                            }
                             onPress={() => this.setState({ is_candidato: true })}>
-                                <Text>Candidato</Text>
+                            <Text
+                                style={this.state.is_candidato
+                                    ?
+                                        styles.activeText
+                                    :
+                                        styles.inactiveText
+                                }
+                            >Candidato</Text>
                         </Button>
                         <Button 
-                            last 
                             active={!this.state.is_candidato} 
+                            style={!this.state.is_candidato
+                                ?
+                                    styles.activeButton
+                                :
+                                    styles.inactiveButton
+                            }
                             onPress={() => this.setState({ is_candidato: false })}>
-                                <Text>Funcionario</Text>
+                            <Text
+                                style={!this.state.is_candidato
+                                    ?
+                                        styles.activeText
+                                    :
+                                        styles.inactiveText
+                                }
+                            >Funcionario</Text>
                         </Button>
-                    </Segment>
                     </View>
                     <List dataArray={this.props.data.estados}
                         renderRow={(estado) =>
-                            <ListItem key={estado.id}  onPress={()=>{Actions.region_politicos_root({id_estado: estado.id, is_candidato: this.state.is_candidato})}}  >
-                                <Text>{estado.nombre}</Text>
-                            </ ListItem>
+                            <TouchableOpacity key={estado.id}  onPress={()=>{Actions.region_politicos_root({id_estado: estado.id, is_candidato: this.state.is_candidato})}}  >
+                                <View style={styles.listCard}>
+                                    <Text>{estado.nombre}</Text>
+                                </View>
+                            </ TouchableOpacity>
                         }>
                     </List>
                 </Content>
@@ -56,6 +84,45 @@ let styles = StyleSheet.create({
     },
     backgroundColor: {
         backgroundColor: '#F9F9F9',
+    },
+    twoColumnContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    activeButton: {
+        backgroundColor: primario,
+        width: Dimensions.get('window').width/2,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 0,
+    },
+    inactiveButton: {
+        backgroundColor: white,
+        width: Dimensions.get('window').width/2,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 0,
+    },
+    inactiveText: {
+        color: primario,
+        textAlign: 'center'
+    },
+    activeText: {
+        color: white,
+        textAlign: 'center'
+    },
+    listCard: {
+        backgroundColor: white,
+        padding: 16,
+        borderRadius: 8,
+        marginHorizontal: 8,
+        marginVertical: 4,
+        width: Dimensions.get('window').width-12,
+    },
+    listCardText: {
+        fontSize: 11
     }
 });
 
