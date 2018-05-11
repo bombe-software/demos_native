@@ -6,16 +6,21 @@ query VotacionPorEstado($id_estado: ID){
     id
     estado {
       id
+      nombre
     }
     preferencias{
       id
       politico {
         id
         nombre
+        partido {
+          id
+          color
+          nombre
+        }
       }
       usuarios{
         id
-        nombre
       }
     }
   }

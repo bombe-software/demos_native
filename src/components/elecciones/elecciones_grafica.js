@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import _ from 'lodash';
+import { VictoryPie, VictoryChart } from 'victory-native'
 
 import { graphql, compose } from 'react-apollo';
 import fetchVotacionEstado from './../../queries/fetchVotacionEstado';
-import Pie from './pie';
+
+
+import { primario } from '../../../assets/styles';
+
 
 class EleccionesGrafica extends Component {
 
@@ -13,27 +18,76 @@ class EleccionesGrafica extends Component {
         super(props);
     }
 
-    render() {
+    render() {   
+
         if (this.props.data.loading) return <Container><Spinner /></Container>
         const votacion = this.props.data.votacion;
-        console.log(votacion);
         
+        if(this.props.data.votacion == null){
+            return (
+                <View>
+                    <Text>No hay elecciones en este estado</Text>
+                </View>
+            )
+        }
+
+        if(this.props.data.votacion.preferencias.length <= 0){
+            return (
+                <View>
+                    <Text>No hay votos aún</Text>
+                </View>
+            )
+        }
+
+        let chartData = [];
+        let colors = [];
+        var pref;
+
+        var p = this.props.data.votacion.preferencias;
+        _.mapValues(p, function (o) {
+            pref= JSON.stringify(p);
+            chartData.push({ 
+                x: ' ', 
+                y: o.usuarios.length+3});
+            colors.push(`rgb(${o.politico.partido.color})`);
+        });
+
         return (
-            <Container>
+            
+            <Container style={{backgroundColor: 'white'}}>
                 <Content>
-                    {(votacion != null) ?(
-                        <Text>Hay votacion</Text>
-                        ) : (
-                        <View>
-                            <Text>No hay resultados para mostrar</Text>
-                        </View>
-                    )}
+                    <Text style={{fontSize: 20, fontWeight: 'bold', padding: 16}}>
+                        Encuesta de {this.props.data.votacion.estado.nombre}
+                    </Text>
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <VictoryPie 
+                        data={chartData} 
+                        colorScale={colors}
+                        width={Dimensions.get('window').width-20}
+                        height={240} />
+                    </View>
+                    <List dataArray={this.props.data.votacion.preferencias}
+                        renderRow={(p) =>
+                            <ListItem key={p.id} style={{flex: 1, flexDirection: 'row', padding: 4}} >
+                                <View style={{height: 12, width: 12, marginRight: 10, backgroundColor: `rgb(${p.politico.partido.color})`}}></View>
+                                <Text>{p.politico.nombre}: {p.usuarios.length+3}</Text>
+                            </ ListItem>
+                        }>
+                    </List>
+                    <View style={{height: 10, width: Dimensions.get('window').width}}></View>
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',}}>
+                        <Button style={{backgroundColor: primario}} onPress={()=>{Actions.encuesta_elecciones_root(
+                                {
+                                    id_estado: votacion.estado.id,
+                                    id_votacion: votacion.id,
+                                })}}>
+                            <Text>Contestar encuesta</Text>
+                        </Button>
+                    </View>
+                    <View style={{height: 10, width: Dimensions.get('window').width}}></View>
                 </Content>
             </Container>
         );
-        /*
-       return <Pie />;
-       */
     }
 }
 

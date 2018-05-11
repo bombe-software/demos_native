@@ -56,6 +56,7 @@ import { secundario, primario, peligro, neutro } from './../assets/styles.js';
 import Elecciones from './components/elecciones/elecciones';
 import EleccionesGrafica from './components/elecciones/elecciones_grafica';
 import ConfirmEmail from "./components/confirm_email";
+import Encuesta from "./components/elecciones/encuesta";
 
 //Configuracion del router
 class Demos extends Component {
@@ -111,7 +112,8 @@ class Demos extends Component {
                             </Scene>
                             <Scene key="elecciones_root" title="Elecciones" iconName="pie-chart" icon={this.renderTabIcon}>
                                 <Scene key="index_elecciones_root" component={Elecciones} />
-                                <Scene key="grafica_elecciones_root" component={EleccionesGrafica} />
+                                <Scene key="grafica_elecciones_root" title="Elección" component={EleccionesGrafica} />
+                                <Scene key="encuesta_elecciones_root" title="Encuesta" component={Encuesta} />
                             </Scene>
                             <Scene key="denuncia_root" title="Denuncias" iconName="bullhorn" icon={this.renderTabIcon}>
                                 <Scene key="denuncia_feed_root" component={DenunciaFeed} />

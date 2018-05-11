@@ -31,7 +31,7 @@ class PoliticosRegion extends Component {
             });
         }
         return (
-            <Container>
+            <Container style={{backgroundColor: 'white'}}>
                 <Content>
                     {(politicos.length != 0) ?(
                         <List style={{margin: 0, padding: 0}} dataArray={politicos}
