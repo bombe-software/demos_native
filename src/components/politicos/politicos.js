@@ -21,7 +21,6 @@ class Politicos extends Component {
 
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>
-        console.log(this.props.data);
         return (
             <Container>
                 <Content>
