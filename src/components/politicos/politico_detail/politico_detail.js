@@ -17,7 +17,7 @@ class PoliticoDetail extends Component {
 
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>
-        const politico = this.props.data.politicosPorId;
+        const politico = this.props.data.politico;
 
         return (
             <Container>

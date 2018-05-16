@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export default gql`
 {
-    usuario{
+    usuario_in{
         id,
         nombre,
         email

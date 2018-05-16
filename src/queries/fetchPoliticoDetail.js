@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export default gql`
 query fetchPoliticoDetail($id: ID!) {
-  politicosPorId(id: $id ){
+  politico(id: $id ){
     id,
     nombre,
     cargo,

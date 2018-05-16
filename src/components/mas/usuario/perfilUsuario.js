@@ -36,7 +36,7 @@ class PerfilUsuario extends Component {
         } else if (usuario.avatar == 'anguila'){
              urlImage= require(`./../../../../assets/images/anguila.png`)
         } else if (usuario.avatar == 'chivo'){
-            urlImage= require(`./../../../../assets/images/jaiba.png`)
+            urlImage= require(`./../../../../assets/images/chivo.png`)
         } else if (usuario.avatar == 'erizo'){
              urlImage= require(`./../../../../assets/images/erizo.png`)
         }

@@ -19,14 +19,13 @@ class PoliticosRegion extends Component {
 
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>;
-
         let politicos = [];
         if (this.props.is_candidato) {
-            politicos = this.props.data.politicosPorEstado.filter(politico => {
+            politicos = this.props.data.politicos_by_id_estado.filter(politico => {
                 return politico.cargo == 'Candidato';
             });
         } else if (!this.props.is_candidato) {
-            politicos = this.props.data.politicosPorEstado.filter(politico => {
+            politicos = this.props.data.politicos_by_id_estado.filter(politico => {
                 return politico.cargo == 'Funcionario';
             });
         }
@@ -36,7 +35,6 @@ class PoliticosRegion extends Component {
                     {(politicos.length != 0) ?(
                         <List style={{margin: 0, padding: 0}} dataArray={politicos}
                             renderRow={(politico) => {
-                                var {nombre}=politico.partido
                                 return (
                                     <TouchableOpacity 
                                         key={politico.id} 
@@ -51,7 +49,7 @@ class PoliticosRegion extends Component {
                                                 backgroundColor: `rgb(${politico.partido.color})`,
                                             }}>
                                                 <Text style={{color: 'white'}}>{
-                                                    nombre
+                                                    politico.partido.nombre
                                                 }</Text>
                                             </Badge>
                                         </View>
@@ -89,5 +87,5 @@ var styles = StyleSheet.create({
 })
 
 export default graphql(fetch_politicos, {
-    options: (props) => { return { variables: { id: props.id_estado } } }
+    options: (props) => { return { variables: { id_estado: props.id_estado } } }
 })(PoliticosRegion);

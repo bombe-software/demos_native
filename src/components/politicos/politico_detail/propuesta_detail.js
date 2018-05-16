@@ -17,7 +17,6 @@ class PropuestaDetail extends Component {
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>
         const propuesta = this.props.data.propuesta;
-        console.log(propuesta)
         return (
             <Container>
                 <ScrollView>
