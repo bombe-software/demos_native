@@ -8,9 +8,12 @@ import { graphql } from 'react-apollo';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 
-
-import login from "./../mutations/login";
-import query from "./../queries/fetchUsuario";
+//Queries y mutations
+import { demos_krb_http } from './../../deploy';
+import login from "./..//mutations/login";
+import usuario_in$acces from "./../queries/usuario_in.access";
+import usuario_in$navbar from "./../queries/usuario_in.navbar";
+import usuario_in$perfil from "./../queries/usuario_in.perfil";
 
 import GenericForm from './generics/generic_form';
 
@@ -37,7 +40,7 @@ class Login extends GenericForm {
             date: (new Date().getMonth() + "/" + new Date().getFullYear())
         };
 
-        const request = axios.post("https://demos-krb.herokuapp.com/ticket_controller", ticket);
+        const request = axios.post(`${demos_krb_http}/ticket_controller`, ticket);
 
         request.then(({ data }) => {
             if (data.message != 404) {
@@ -49,7 +52,11 @@ class Login extends GenericForm {
                             email,
                             password: decryptedData.ticket
                         },
-                        refetchQueries: [{ query }]
+                        refetchQueries: [
+                            { query: usuario_in$acces },
+                            { query: usuario_in$navbar },
+                            { query: usuario_in$perfil }
+                        ]
                     })
                     .then(data => Actions.root())
                     .catch(res => {
@@ -162,4 +169,4 @@ var styles = StyleSheet.create({
     }
 });
 
-export default graphql(query)(graphql(login)(Login));
+export default graphql(login)(Login);
