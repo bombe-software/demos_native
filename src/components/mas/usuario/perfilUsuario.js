@@ -5,7 +5,7 @@ import { View, ScrollView, StyleSheet, Dimensions, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, Spinner } from 'native-base';
 
-import fetchUsuario from './../../../queries/fetchUsuario';
+import fetchUsuario from './../../../queries/usuario_in.perfil';
 
 class PerfilUsuario extends Component {
 
@@ -20,8 +20,12 @@ class PerfilUsuario extends Component {
     render() {
         if (this.props.data.loading)
             return <Container><Spinner /></Container>
-        this.props.data.refetch();     let { usuario } = this.props.data;
-        if (JSON.stringify(usuario) == undefined) {
+        this.props.data.refetch();     
+        console.log(this.props);
+        let  usuario  = this.props.data.usuario_in;
+        console.log(usuario);
+        //console.log(this.props);
+        if (!usuario) {
             return (
                 <Container>
                     <Text>

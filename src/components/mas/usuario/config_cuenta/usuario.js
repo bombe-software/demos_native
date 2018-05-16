@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image,Spinner } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'

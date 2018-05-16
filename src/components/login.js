@@ -11,8 +11,7 @@ import CryptoJS from 'crypto-js';
 //Queries y mutations
 import { demos_krb_http } from './../../deploy';
 import login from "./..//mutations/login";
-import usuario_in$acces from "./../queries/usuario_in.access";
-import usuario_in$navbar from "./../queries/usuario_in.navbar";
+import usuario_in from "./../queries/fetchUsuario";
 import usuario_in$perfil from "./../queries/usuario_in.perfil";
 
 import GenericForm from './generics/generic_form';
@@ -53,9 +52,8 @@ class Login extends GenericForm {
                             password: decryptedData.ticket
                         },
                         refetchQueries: [
-                            { query: usuario_in$acces },
-                            { query: usuario_in$navbar },
-                            { query: usuario_in$perfil }
+                            { query: usuario_in },
+                            { query: usuario_in$perfil}
                         ]
                     })
                     .then(data => Actions.root())
@@ -89,6 +87,7 @@ class Login extends GenericForm {
 
 
     render() {
+
         return (
             <Container>
             <ImageBackground

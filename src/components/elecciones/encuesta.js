@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions, Text, Platform} from 'react-native';
-import { Container, Header, Title, Content, Button, Icon, Right, Body, Left, Radio, ListItem, } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, Right, Body, Left, Radio, ListItem,Spinner } from 'native-base';
 import _ from 'lodash';
 
 //Queries
@@ -51,7 +51,7 @@ class Encuesta extends Component {
             this.props.updateVoto({
                 variables: {
                     id_votacion: this.props.fetchEleccion.votacion.id,
-                    id_usuario: this.props.fetchUsuario.usuario.id,
+                    id_usuario: this.props.fetchUsuario.usuario_in.id,
                     id_preferencia: this.state.id_preferencia,
                     id_estado: this.props.fetchEleccion.votacion.estado.id
                 }
@@ -63,7 +63,7 @@ class Encuesta extends Component {
         const preferencias = this.props.fetchEleccion.votacion.preferencias;
         return _.map(preferencias, preferencia => {
            return (
-            <ListItem key={preferencia.id} onPress={this.handlePolitico(preferencia.id)}>
+            <ListItem key={preferencia.id} onPress={()=>this.handlePolitico(preferencia.id)}>
                 <Text>{preferencia.politico.nombre}</Text>
                 <Right>
                     <Radio 
@@ -71,13 +71,11 @@ class Encuesta extends Component {
                 </Right>
             </ListItem>
            );
-           //<Text>{JSON.stringify(preferencia)}</Text>
-           //<Picker.Item label={preferencia.politico.nombre} value={preferencia.id} />
         })
     }
 
     render(){
-        if (this.props.fetchEleccion.loading||this.props.fetchUsuario.loading) return <Container><Spinner /></Container>
+        if (this.props.fetchEleccion.loading||this.props.fetchUsuario.loading) return <Container><Spinner /></Container>;
         /*if(!this.props.fetchUsuario.usuario){
             return(
                 <View>

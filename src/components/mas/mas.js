@@ -14,6 +14,10 @@ import usuario from "../../queries/fetchUsuario";
 
 class Mas extends Component {
 
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
     logout() {
         this.props.mutate({
             refetchQueries: [{ query: usuario }]
@@ -21,13 +25,13 @@ class Mas extends Component {
     }
 
     render() {
-        if (this.props.data.loading)  return <Container><Spinner /></Container>
+        if(this.props.data.loading) return <Container><Spinner /></Container>;
         return (
             <Container>
                 <ScrollView>
                     <Content>
                         <List>
-                            {this.props.data.usuario ?
+                            {this.props.data.usuario_in ?
                                 <ListItem icon onPress={() => { Actions.perfil_mas_root() }} >
                                     <Left>
                                         <Icon name="user" />
@@ -45,8 +49,8 @@ class Mas extends Component {
                                     <Text>Buscar</Text>
                                 </Body>
                             </ListItem>
-                            {this.props.data.usuario ?
-                                <ListItem icon onPress={() => { Actions.landing_before() }} >
+                            {this.props.data.usuario_in ?
+                                <ListItem icon onPress={() => { Actions.landing_before(); this.logout() }} >
                                     <Left>
                                         <Icon name="sign-out" />
                                     </Left>
