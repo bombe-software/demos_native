@@ -94,7 +94,8 @@ let styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 0,
+        borderRadius: 2,
+        borderColor: primario,
     },
     inactiveButton: {
         backgroundColor: white,
@@ -102,7 +103,8 @@ let styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 0,
+        borderRadius: 2,
+        borderColor: primario,
     },
     inactiveText: {
         color: primario,
