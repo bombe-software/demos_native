@@ -6,7 +6,7 @@ import { Form, Field } from 'react-final-form'
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
 import { graphql } from 'react-apollo';
 
-import update_usuario from "./../../../../mutations/updateUsuario";
+import update_usuario from "./../../../../mutations/usuario.config_cuenta.password";
 
 import GenericForm from './../../../generics/generic_form';
 
