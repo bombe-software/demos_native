@@ -18,13 +18,11 @@ class PerfilUsuario extends Component {
     }
 
     render() {
-        if (this.props.data.loading)
-            return <Container><Spinner /></Container>
+        if (this.props.data.loading) return <Container><Spinner /></Container>
         this.props.data.refetch();     
-        console.log(this.props);
+
         let  usuario  = this.props.data.usuario_in;
-        console.log(usuario);
-        //console.log(this.props);
+
         if (!usuario) {
             return (
                 <Container>

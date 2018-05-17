@@ -64,8 +64,6 @@ class PoliticosRegion extends Component {
                             <Text>No hay resultados para mostrar</Text>
                         </View>
                     )}
-
-
                 </Content>
             </Container>
         );

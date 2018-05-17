@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight, BackHandler} from 'react-native';
 
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem,Header, Tab, Tabs } from 'native-base';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 
 import fetchUsuario from '../../../../queries/fetchUsuario';
-import updateUsuario from '../../../../mutations/updateUsuario';
+import update_usuario$nombre from '../../../../mutations/usuario.config_cuenta.nombre';
+import update_usuario$password from '../../../../mutations/usuario.config_cuenta.password';
+import update_usuario$avatar from '../../../../mutations/usuario.config_cuenta.avatar';
+
 import Password from './password';
 import Usuario from './usuario';
 import Avatar from './avatar';
@@ -14,11 +17,6 @@ import { title_light, subtitle_light, image_background, primario, peligro } from
 
 
 class ConfigCuenta extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
     /**
     * Es una forma de capturar cualquier error en la clase 
     * y que este no crashe el programa, ayuda con la depuracion
@@ -57,20 +55,17 @@ class ConfigCuenta extends Component {
                             <Tabs initialPage={0}>
                                 <Tab heading="Nombre de usuario">
                                     <Usuario 
-                                    mutate = {this.props.mutate}
-                                    usuario = { usuario }
+                                    mutate = {this.props.update_usuario}
                                     />
                                 </Tab>
                                 <Tab heading="Password">
                                     <Password 
-                                    mutate = {this.props.mutate}
-                                    usuario = { usuario }
+                                    mutate = {this.props.update_password}
                                     />
                                 </Tab>
                                 <Tab heading="Avatar">
                                     <Avatar 
-                                    mutate = {this.props.mutate}
-                                    usuario = { usuario }
+                                    mutate = {this.props.update_avatar}
                                     />
                                 </Tab>
                             </Tabs>
@@ -87,4 +82,17 @@ var styles = StyleSheet.create({
     }
 });
 
-export default graphql(updateUsuario)(graphql(fetchUsuario)(ConfigCuenta))
+export default compose(
+    graphql(fetchUsuario, {
+      name: 'data'
+    }),
+    graphql(update_usuario$nombre, {
+      name: 'update_usuario',
+    }),
+    graphql(update_usuario$avatar, {
+        name: 'update_avatar'
+    }),
+    graphql(update_usuario$password, {
+        name: 'update_password'
+    })
+)(ConfigCuenta);

@@ -127,5 +127,4 @@ let styles = StyleSheet.create({
     }
 });
 
-
 export default graphql(fetch_estados)(Politicos);

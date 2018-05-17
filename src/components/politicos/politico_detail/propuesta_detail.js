@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Alert, View, ScrollView, StyleSheet } from 'react-native';
-import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Badge } from 'native-base';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import { Container, Content, List, ListItem, Text, Button, Spinner, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import { graphql, compose } from 'react-apollo';
@@ -22,7 +22,6 @@ class PropuestaDetail extends Component {
                 <ScrollView>
                     <Content>
                         <View style={styles.card}>
-
                             <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 4}}>{propuesta.titulo}</Text>
                             <Badge style={{backgroundColor: neutro, marginBottom: 8}}><Text>{propuesta.tipo_propuesta.tipo}</Text></Badge>
 
@@ -30,7 +29,6 @@ class PropuestaDetail extends Component {
                             <Text>{propuesta.descripcion}</Text>
 
                             <Text style={{color: neutro, marginTop: 8}}>Referencia: {propuesta.referencia}</Text>
-
                         </View>
                     </Content>
                 </ScrollView>

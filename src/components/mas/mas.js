@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, ImageBackground, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import { graphql } from 'react-apollo';
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
-import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem, List, ListItem, Left, Body, Spinner } from 'native-base';
+import { Container, Content, Button, Text, Item, List, ListItem, Left, Body, Spinner } from 'native-base';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -58,7 +58,16 @@ class Mas extends Component {
                                         <Text>Cerrar Sesión</Text>
                                     </Body>
                                 </ListItem>
-                                : <Text/>}
+                                : 
+                                <ListItem icon onPress={() => { Actions.landing_before()}} >
+                                <Left>
+                                    <Icon name="sign-in" />
+                                </Left>
+                                <Body>
+                                    <Text>Logueate</Text>
+                                </Body>
+                            </ListItem>
+                            }
 
                         </List>
                     </Content>

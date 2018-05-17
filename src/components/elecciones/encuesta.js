@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions, Text, Platform} from 'react-native';
-import { Container, Header, Title, Content, Button, Icon, Right, Body, Left, Radio, ListItem,Spinner } from 'native-base';
+import { Container, Content, Button, Right, Radio, ListItem,Spinner } from 'native-base';
 import _ from 'lodash';
 
 //Queries
@@ -76,13 +76,6 @@ class Encuesta extends Component {
 
     render(){
         if (this.props.fetchEleccion.loading||this.props.fetchUsuario.loading) return <Container><Spinner /></Container>;
-        /*if(!this.props.fetchUsuario.usuario){
-            return(
-                <View>
-                    <Text>Inicia sesión para acceder a este módulo</Text>
-                </View>
-            );
-        }*/
 
         return(
             <Container>

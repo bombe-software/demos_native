@@ -32,14 +32,10 @@ class Usuario extends GenericForm {
     }
 
     async onSubmit(values) {
-            const id = this.props.usuario.id;
             const nombre = values.nombre;
-            const password = this.props.usuario.password;
-            const avatar = this.props.usuario.avatar;
-
             this.props.mutate({
                 variables: {
-                    id, nombre, password, avatar
+                    nombre
                 }
             }).then(() => {
                 Actions.perfil_mas_root();
@@ -95,14 +91,14 @@ class Usuario extends GenericForm {
                                                     <View style={{ padding: 16, paddingTop: 12 }}>
                                                         <Field name="nombre"
                                                             component={this.renderTextField}
-                                                            label="Nombre"
+                                                            label="Nombre de usuario"
                                                         />
                                                     </View>
                                                     
                                                 </View>
                                                 <Button block onPress={handleSubmit} onPress={handleSubmit}
                                                     style={{ backgroundColor: primario, marginTop: 10 }} >
-                                                    <Text>Ingresar</Text>
+                                                    <Text>Cambiar</Text>
                                                 </Button>
                                                 <Button block light small transparent
                                                     onPress={() => Actions.perfil_mas_root()}

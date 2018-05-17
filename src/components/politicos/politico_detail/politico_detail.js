@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, View, StyleSheet, ScrollView } from 'react-native';
-import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Card, CardItem, Badge } from 'native-base';
-import { Actions } from 'react-native-router-flux';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Badge } from 'native-base';
 
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import fetchPoliticoDetail from './../../../queries/fetchPoliticoDetail';
 
 class PoliticoDetail extends Component {

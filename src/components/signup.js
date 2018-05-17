@@ -16,8 +16,6 @@ const background_image_url = "https://raw.githubusercontent.com/bombe-software/s
 
 import { PermissionsAndroid } from 'react-native';
 
-//const urlImage = '../../assets/images/';
-
 class SignUp extends GenericForm {
 
     async permiso() {
@@ -152,13 +150,14 @@ class SignUp extends GenericForm {
         if (this.state.avatar == '') {
             this.setState({ error: 'Selecciona un avatar' })
         } else {
-            const { avatar, localidad } = this.state;
+            const { avatar } = this.state;
             const {
                 nombre, email, password
             } = values;
+
             this.props.mutate({
                 variables: {
-                    nombre, email, password, localidad, avatar
+                    nombre, email, password, avatar, localidad: "Veracruz", 
                 }
             }).then(() => {
                 Actions.confirm_email_before();
@@ -171,9 +170,6 @@ class SignUp extends GenericForm {
         if (this.state.avatar === selectedAvatar) return primario;
         return 'white';
     }
-
-
-
     /**
     * Es una forma de capturar cualquier error en la clase 
     * y que este no crashe el programa, ayuda con la depuracion

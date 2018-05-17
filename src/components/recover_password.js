@@ -44,7 +44,6 @@ class RecoverPassword extends GenericForm {
           });
       };
 
-
     render() {
         return (
             <Container>

@@ -57,7 +57,7 @@ class ConfirmEmail extends GenericForm {
                                 errors.email = 'Correo inválido';
                             }
                             if (!values.firma) {
-                                errors.email = "Ingrese la firma";
+                                errors.fimra = "Ingrese la firma";
                             }
                             return errors;
                         }}

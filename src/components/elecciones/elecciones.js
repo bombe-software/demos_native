@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import fetch_estados from './../../queries/fetchEstados';
 
 class Elecciones extends Component {
@@ -29,7 +29,5 @@ class Elecciones extends Component {
         );
     }
 }
-
-
 
 export default graphql(fetch_estados)(Elecciones);

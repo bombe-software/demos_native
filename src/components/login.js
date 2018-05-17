@@ -20,7 +20,6 @@ import { title_light, subtitle_light, image_background, primario, peligro } from
 
 const background_image_url = "https://raw.githubusercontent.com/bombe-software/stock-images/master/demos_native_background_02.jpg";
 
-
 class Login extends GenericForm {
 
     constructor(props) {
@@ -84,10 +83,7 @@ class Login extends GenericForm {
             }
         });
     };
-
-
     render() {
-
         return (
             <Container>
             <ImageBackground

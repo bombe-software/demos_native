@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Button, Text, Item, Label, Input, Icon } from 'native-base';
+import { Container, Content, Button, Text, Item, Label, Input, Icon, Textarea } from 'native-base';
 import { View } from 'react-native';
 
 class GenericForm extends Component {
@@ -10,14 +10,14 @@ class GenericForm extends Component {
   renderTextField({ input, label, meta: { touched, error }, ...custom }) {
     return (
       <View>
-        <Item floatingLabel  error={touched && !(!error) ? true : false}>
+        <Item floatingLabel error={touched && !(!error) ? true : false}>
           <Label>{label}</Label>
           <Input
             {...input}
             {...custom}
           />
         </Item>
-        <Label style={{color: 'red', fontSize: 10}}>{touched && error}</Label>
+        <Label style={{ color: 'red', fontSize: 10 }}>{touched && error}</Label>
       </View>
     );
   }
@@ -25,7 +25,7 @@ class GenericForm extends Component {
   renderPasswordField({ input, label, meta: { touched, error }, ...custom }) {
     return (
       <View>
-        <Item floatingLabel  error={touched && !(!error) ? true : false}>
+        <Item floatingLabel error={touched && !(!error) ? true : false}>
           <Label>{label}</Label>
           <Input
             secureTextEntry={true}
@@ -33,10 +33,28 @@ class GenericForm extends Component {
             {...custom}
           />
         </Item>
-        <Label style={{color: 'red', fontSize: 10}}>{touched && error}</Label>
+        <Label style={{ color: 'red', fontSize: 10 }}>{touched && error}</Label>
       </View>
     );
   }
+  renderTextArea({ input, label, meta: { touched, error }, ...custom }) {
+    return (
+      <View>
+        <Item floatingLabel error={touched && !(error) ? true : false}>
+        <Label>{label}</Label>
+        <Textarea
+          multiLine={true}
+          rows={4}
+          rowsMax={4}
+          {...input}
+          {...custom}
+        />
+      </Item>
+        <Label style={{ color: 'red', fontSize: 10 }}>{touched && error}</Label>
+      </View>
+    );
+  }
+
 
 
   /**

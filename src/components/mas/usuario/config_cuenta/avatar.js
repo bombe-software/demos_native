@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight } from 'react-native';
+import { View, Alert, ImageBackground, ScrollView, StyleSheet, Dimensions, Image, TouchableHighlight, BackHandler } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Form, Field } from 'react-final-form'
 import { Container, Content, Button, Text, Item, Label, Input, Card, CardItem } from 'native-base';
@@ -86,14 +86,10 @@ class Avatar extends GenericForm {
 
 
     async onSubmit(values) {
-        const id = this.props.usuario.id;
-        const nombre = this.props.usuario.nombre;
-        const password = this.props.usuario.password;
         const avatar = this.state.avatar;
-
         this.props.mutate({
             variables: {
-                id, nombre, password, avatar
+                avatar
             }
         }).then(() => {
             Actions.perfil_mas_root();
@@ -133,8 +129,6 @@ class Avatar extends GenericForm {
                             <Form
                                 onSubmit={this.onSubmit}
                                 validate={values => {
-
-                                
 
                                 }}
 
@@ -201,7 +195,7 @@ class Avatar extends GenericForm {
                                                 </View>
                                                  <Button block onPress={handleSubmit}
                                                     style={{ backgroundColor: primario, marginTop: 10 }} >
-                                                    <Text>Ingresar</Text>
+                                                    <Text>Cambiar</Text>
                                                 </Button>
                                                 <Button block light small transparent
                                                     onPress={() => Actions.perfil_mas_root()}
@@ -220,6 +214,8 @@ class Avatar extends GenericForm {
             </Container>
         );
     }
+
+
 }
 
 var styles = StyleSheet.create({

@@ -8,7 +8,7 @@ export default gql`
     email,
     localidad {
       id,
-      nombre,
+      nombre
     }
     puntos,
     fecha_registro,

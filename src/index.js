@@ -62,7 +62,6 @@ import Encuesta from "./components/elecciones/encuesta";
 //Configuracion del router
 class Demos extends Component {
 
-
     renderTabIcon({ selected, title, iconName }) {
         var color = selected ? primario : neutro;
 
@@ -73,7 +72,6 @@ class Demos extends Component {
             </View>
         );
     }
-
 
     render() {
         return (
@@ -131,8 +129,6 @@ class Demos extends Component {
             </ApolloProvider >
         )
     }
-
 }
 
 export default Demos;
-
