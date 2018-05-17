@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Alert, View, StyleSheet, TouchableOpacity, Dimensions, BackHandler} from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, CardItem, Card, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -15,8 +15,27 @@ class PoliticosRegion extends Component {
         this.state = {
             is_candidato: true
         };
+        this.handleBack = this.handleBack.bind(this);
     }
-
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBack);
+      }
+      
+      componentWillUnmount() {
+        //Forgetting to remove the listener will cause pop executes multiple times
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
+      }
+      
+      handleBack() {
+        console.log("CACACA");
+        if (this.navigator && this.navigator.getCurrentRoutes().length > 1){
+          this.navigator.pop();
+          return true; //avoid closing the app
+        }
+      
+        return false; //close the app
+      }
+    
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>;
         let politicos = [];
