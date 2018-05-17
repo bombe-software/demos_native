@@ -144,6 +144,13 @@ class Login extends GenericForm {
                                 >
                                     <Text>Regresar</Text>
                                 </Button>
+                                <Text style={{textAlign: 'center', fontSize: 10, color: 'white', marginTop: 30}}>¿No has confirmado tu correo?</Text>
+                                <Button block light small transparent
+                                    onPress={() => Actions.confirm_email_before()}
+                                    style={{ marginTop: 8 }}
+                                >
+                                    <Text>Confirmar correo</Text>
+                                </Button>
                             </View>
                         </View>
                         )}
