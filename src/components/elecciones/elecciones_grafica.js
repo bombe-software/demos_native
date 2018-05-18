@@ -20,6 +20,7 @@ class EleccionesGrafica extends Component {
     render() {
         if (this.props.data.loading || this.props.fetchUsuario.loading)  return <Container><Spinner /></Container>
         const votacion = this.props.data.votacion;
+        console.log(this.props);
 
         if (this.props.data.votacion == null) {
             return (
@@ -81,6 +82,7 @@ class EleccionesGrafica extends Component {
                                     {
                                         id_estado: votacion.estado.id,
                                         id_votacion: votacion.id,
+                                        id_estado: this.props.id_estado
                                     })
                             }}>
                                 <Text>Contestar encuesta</Text>

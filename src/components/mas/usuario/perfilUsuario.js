@@ -10,9 +10,9 @@ import fetchUsuario from './../../../queries/usuario_in.perfil';
 class PerfilUsuario extends Component {
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.fetchUsuario)
+        if(nextProps.data)
         {
-        nextProps.fetchUsuario.refetch();
+        nextProps.data.refetch();
         return true;
         }
     }

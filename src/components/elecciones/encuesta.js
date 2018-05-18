@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, Text, Platform} from 'react-native';
-import { Container, Content, Button, Right, Radio, ListItem,Spinner } from 'native-base';
+import React, { Component } from 'react';
+import { View, StyleSheet, Dimensions, Text, Platform } from 'react-native';
+import { Container, Content, Button, Right, Radio, ListItem, Spinner } from 'native-base';
 import _ from 'lodash';
 
 //Queries
@@ -14,7 +14,7 @@ import { primario } from './../../../assets/styles';
 
 class Encuesta extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             id_preferencia: 0,
@@ -43,11 +43,11 @@ class Encuesta extends Component {
     }
     componentWillReceiveProps(nextProps) {
         nextProps.fetchEleccion.refetch();
-      } 
+    }
     handleClick() {
         if (this.state.id_preferencia.length == 0) {
             this.setState({ mensaje: "Selecciona a alguien" })
-        }else{
+        } else {
             this.props.updateVoto({
                 variables: {
                     id_votacion: this.props.fetchEleccion.votacion.id,
@@ -55,53 +55,65 @@ class Encuesta extends Component {
                     id_preferencia: this.state.id_preferencia,
                     id_estado: this.props.fetchEleccion.votacion.estado.id
                 }
-            }).then(()=>Actions.grafica_elecciones_root());
+            }).then(() => Actions.pop({id_estado: this.props.id_estado}));
         }
     }
 
     renderListPoliticos() {
         const preferencias = this.props.fetchEleccion.votacion.preferencias;
         return _.map(preferencias, preferencia => {
-           return (
-            <ListItem key={preferencia.id} onPress={()=>this.handlePolitico(preferencia.id)}>
-                <Text>{preferencia.politico.nombre}</Text>
-                <Right>
-                    <Radio 
-                    selected={this.state.id_preferencia==preferencia.id} />
-                </Right>
-            </ListItem>
-           );
+            return (
+                <ListItem key={preferencia.id} onPress={() => this.handlePolitico(preferencia.id)}>
+                    <Text>{preferencia.politico.nombre}</Text>
+                    <Right>
+                        <Radio
+                            selected={this.state.id_preferencia == preferencia.id} />
+                    </Right>
+                </ListItem>
+            );
         })
     }
 
-    render(){
-        if (this.props.fetchEleccion.loading||this.props.fetchUsuario.loading) return <Container><Spinner /></Container>;
-
-        return(
+    render() {
+        if (this.props.fetchEleccion.loading || this.props.fetchUsuario.loading) return <Container><Spinner /></Container>;
+        return (
             <Container>
                 <Content>
-                <View>
-                    <Text>Encuesta</Text>
-                    {this.renderListPoliticos()}
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',}}>
-                    <Button style={{backgroundColor: primario}} onPress={this.handleClick}>
-                        <Text>Votar</Text>
-                    </Button>
+                    <View style={styles.card}>
+                        <Text style={{ paddingTop: 10, fontWeight: 'bold',fontSize: 20, color: 'black', textAlign: "center" }}>
+                            Candidatos
+                            </Text>
+
+                        {this.renderListPoliticos()}
+                        <View style={{ height: 10, width: Dimensions.get('window').width }}></View>
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', }}>
+                            {this.props.fetchUsuario.usuario_in ?
+                                <Button style={{ backgroundColor: primario }} onPress={this.handleClick}>
+                                    <Text style={{color: 'white'}}>Contestar encuesta</Text>
+                                </Button>
+                                : <Text />}
+
+                        </View>
+                        <View style={{ height: 10, width: Dimensions.get('window').width }}></View>
                     </View>
-                </View>
                 </Content>
             </Container>
         );
     }
 }
-
+var styles = StyleSheet.create({
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+    }
+});
 export default compose(
     graphql(usuario, {
-      name: 'fetchUsuario'
+        name: 'fetchUsuario'
     }),
     graphql(eleccion, {
-      name: 'fetchEleccion',
-      options: ({ id_estado }) => ({ variables: { id_estado } }),
+        name: 'fetchEleccion',
+        options: ({ id_estado }) => ({ variables: { id_estado } }),
     }),
     graphql(voto_por_estado, {
         name: 'updateVoto'
