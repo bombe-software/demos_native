@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, BackHandler } from 'react-native';
 import { Container, Content, List, ListItem, Text, Segment, Button, Spinner, Badge } from 'native-base';
-
+import { Actions } from 'react-native-router-flux';
 import { graphql } from 'react-apollo';
 import fetchPoliticoDetail from './../../../queries/fetchPoliticoDetail';
 

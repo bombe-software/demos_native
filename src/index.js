@@ -44,6 +44,7 @@ import EventoDetail from "./components/politicos/politico_detail/evento_detail";
 import PropuestaDetail from "./components/politicos/politico_detail/propuesta_detail";
 
 //Mas
+import DenunciaFeed from "./components/denuncia/denunciaFeed";
 import DenunciaForm from "./components/denuncia/denunciaForm";
 
 //Importar modulos de mas
@@ -115,6 +116,7 @@ class Demos extends Component {
                                 <Scene key="encuesta_elecciones_root" title="Encuesta" component={Encuesta} />
                             </Scene>
                             <Scene key="denuncia_root" title="Denuncias" iconName="bullhorn" icon={this.renderTabIcon}>
+                                <Scene key="denuncia_feed_root" component={DenunciaFeed} />
                                 <Scene key="denuncia_form_root" component={DenunciaForm} />
                             </Scene>
                             <Scene key="mas_root" title="Más Opciones" iconName="bars" icon={this.renderTabIcon}>

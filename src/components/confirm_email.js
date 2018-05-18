@@ -29,11 +29,12 @@ class ConfirmEmail extends GenericForm {
     }
 
     async onSubmit(values) {
+        const { email, firma} = values;;
         this.props.mutate({
-            variables: values
+            variables: {email, firma}
         })
-            .then(data => Actions.login_before())
-            .catch(({ graphQLErrors }) => this.setState({ error: graphQLErrors[0].message }))
+            .then(console.log("CACACACA"))
+            .catch(({ graphQLErrors }) => console.log(graphQLErrors), this.setState({ error: graphQLErrors[0].message }))
     }
 
 
@@ -57,7 +58,7 @@ class ConfirmEmail extends GenericForm {
                                 errors.email = 'Correo inválido';
                             }
                             if (!values.firma) {
-                                errors.fimra = "Ingrese la firma";
+                                errors.firma = "Ingrese la firma";
                             }
                             return errors;
                         }}

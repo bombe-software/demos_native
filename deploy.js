@@ -12,7 +12,7 @@ exports.validation_http = true;
 */
 
 exports.demos_web_http = "http://localhost:9000";
-exports.demos_krb_http = "http://192.168.0.7:5000";
-exports.demos_gql_http = "http://192.168.0.7:3000";
+exports.demos_krb_http = "http://10.0.0.14:5000";
+exports.demos_gql_http = "http://10.0.0.14:3000";
 exports.demos_gql_ws = "ws://localhost:3000";
 exports.validation_http = false;

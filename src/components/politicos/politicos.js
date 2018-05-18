@@ -17,22 +17,8 @@ class Politicos extends Component {
         this.state = {
             is_candidato: true
         };
-        this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
-        
     }
 
-    componentWillMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-    }
-    
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
-    }
-    
-    handleBackButtonClick() {
-        this.props.navigation.goBack(null);
-        return true;
-        }
     render() {
         if (this.props.data.loading) return <Container><Spinner /></Container>
         return (
