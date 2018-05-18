@@ -2,7 +2,7 @@
 import "core-js/es6/symbol";
 import "core-js/fn/symbol/iterator";
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, BackHandler } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -73,6 +73,13 @@ class Demos extends Component {
             </View>
         );
     }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', function () {
+            return false;
+        });
+    }
+
 
     render() {
         return (
