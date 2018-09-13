@@ -61,10 +61,12 @@ class Encuesta extends Component {
 
     renderListPoliticos() {
         const preferencias = this.props.fetchEleccion.votacion.preferencias;
+        var nombrePolitico;
         return _.map(preferencias, preferencia => {
+            nombrePolitico = preferencia.politico ? preferencia.politico.nombre : 'Sin nombre';
             return (
                 <ListItem key={preferencia.id} onPress={() => this.handlePolitico(preferencia.id)}>
-                    <Text>{preferencia.politico.nombre}</Text>
+                    <Text>{nombrePolitico}</Text>
                     <Right>
                         <Radio
                             selected={this.state.id_preferencia == preferencia.id} />

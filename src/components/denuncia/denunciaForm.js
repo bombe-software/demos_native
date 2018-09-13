@@ -41,8 +41,8 @@ class DenunciaForm extends GenericForm {
     }
 
     async onSubmit(values) {
-      var ubicacion = `${this.state.latitude},${this.state.longitude}`
-      const {titulo, descripcion} = values
+      var ubicacion = /*`${this.state.latitude},${this.state.longitude}`*/ "ubicación";
+      const {titulo, descripcion} = values;
       var usuario = this.props.data.usuario_in.id;
       this.props.mutate({
         variables: {titulo, descripcion, usuario, ubicacion}

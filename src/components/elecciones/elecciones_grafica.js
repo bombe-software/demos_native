@@ -43,14 +43,26 @@ class EleccionesGrafica extends Component {
         var pref;
 
         var p = this.props.data.votacion.preferencias;
+        var color;
         _.mapValues(p, function (o) {
             pref = JSON.stringify(p);
             chartData.push({
                 x: ' ',
                 y: o.usuarios.length + 3
             });
-            colors.push(`rgb(${o.politico.partido.color})`);
+            if(o.politico){
+                color = o.politico.partido.color
+            } else {
+                color = '35,41,99';
+            }
+            colors.push(`rgb(${color})`);
         });
+        var staticColor;
+        if(p.politico){
+            staticColor = p.politico.partido.color
+        } else {
+            staticColor = '35,41,99';
+        }
 
         return (
 
@@ -67,11 +79,19 @@ class EleccionesGrafica extends Component {
                             height={240} />
                     </View>
                     <List dataArray={this.props.data.votacion.preferencias}
-                        renderRow={(p) =>
-                            <ListItem key={p.id} style={{ flex: 1, flexDirection: 'row', padding: 4 }} >
-                                <View style={{ height: 12, width: 12, marginRight: 10, backgroundColor: `rgb(${p.politico.partido.color})` }}></View>
+                        renderRow={(p) => {
+                            if(p.politico){
+                                return <ListItem key={p.id} style={{ flex: 1, flexDirection: 'row', padding: 4 }} >
+                                <View style={{ height: 12, width: 12, marginRight: 10, backgroundColor: `rgb(${staticColor})` }}></View>
                                 <Text>{p.politico.nombre}: {p.usuarios.length + 3}</Text>
                             </ ListItem>
+                            } else {
+                                return <ListItem key={p.id} style={{ flex: 1, flexDirection: 'row', padding: 4 }} >
+                                <View style={{ height: 12, width: 12, marginRight: 10, backgroundColor: `rgb(${staticColor})` }}></View>
+                                <Text>Sin nombre: {p.usuarios.length + 3}</Text>
+                            </ ListItem>
+                            }
+                        }
                         }>
                     </List>
                     <View style={{ height: 10, width: Dimensions.get('window').width }}></View>
